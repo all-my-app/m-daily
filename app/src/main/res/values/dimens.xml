@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TEXT SIZE -->
+    <dimen name="size_text_small">12sp</dimen>
+    <dimen name="size_text_normal">14sp</dimen>
+    <dimen name="size_text_large">18sp</dimen>
+    <dimen name="size_text_supper_large">22sp</dimen>
+    <dimen name="size_text_logo">50sp</dimen>
+
+    <!-- ACTION BAR SIMPLE-->
+    <dimen name="padding_action_bar">10dp</dimen>
+    <dimen name="width_height_icon_action_bar">40dp</dimen>
+    <dimen name="padding_icon_action_bar">5dp</dimen>
+
+    <!-- ACTION BAR SPINNER -->
+    <dimen name="width_spinner_actionbar">300dp</dimen>
+    <dimen name="height_spinner_actionbar">50dp</dimen>
+    <dimen name="margin_top_spinner_actionbar">10dp</dimen>
+
+    <!-- DIALOG SELECT ITEM -->
+    <dimen name="margin_dialog_item">10dp</dimen>
+    <dimen name="margin_top_bottom_dialog_select_item">15dp</dimen>
+
+    <!-- LOGIN SCREEN -->
+    <dimen name="width_img_logo">230dp</dimen>
+    <dimen name="width_btn_login">250dp</dimen>
+    <dimen name="height_btn_login">45dp</dimen>
+
+    <!-- HOME SCREEN -->
+    <dimen name="padding_left_right_item_menu">10dp</dimen>
+    <dimen name="padding_top_bottom_right_item_menu">20dp</dimen>
+    <dimen name="margin_right_icon_item_menu">30dp</dimen>
+    <dimen name="width_height_avatar_menu">100dp</dimen>
+    <dimen name="width_height_item_menu">25dp</dimen>
+
+    <!-- LIST WALLET -->
+    <dimen name="arrow_size_spinner_item_list_wallet">20dp</dimen>
+    <dimen name="margin_right_bottom_add_wallet_button">25dp</dimen>
+    <dimen name="padding_item_list_wallet">10dp</dimen>
+    <dimen name="width_height_image_left_list_wallet_title">25dp</dimen>
+    <dimen name="width_spinner_item_list_wallet">200dp</dimen>
+    <dimen name="height_spinner_item_list_wallet">40dp</dimen>
+    <dimen name="height_chart_item_list_wallet">220dp</dimen>
+
+    <!-- CREATE WALLET -->
+    <dimen name="height_button_create_wallet">60dp</dimen>
+    <dimen name="width_height_add_create_wallet">55dp</dimen>
+    <dimen name="width_height_icon_dropdown">20dp</dimen>
+    <dimen name="width_height_icon_remove">30dp</dimen>
+    <dimen name="padding_left_title_item_create_wallet">20dp</dimen>
+    <dimen name="height_field_item_create_wallet">45dp</dimen>
+    <dimen name="height_field_description_item_create_wallet">100dp</dimen>
+    <dimen name="padding_field_item_create_wallet">10dp</dimen>
+
+    <!-- CREATE PAID WALLET -->
+    <dimen name="padding_item_content_paid_wallet">20dp</dimen>
+</resources>

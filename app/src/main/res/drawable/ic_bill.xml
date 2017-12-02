@@ -1,0 +1,36 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="24dp"
+        android:height="24dp"
+        android:viewportHeight="96.0"
+        android:viewportWidth="96.0">
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M65.38,58.88V27c0,-2.21 -1.79,-4 -4,-4H41.56"
+        android:strokeColor="@color/color_ic_while"
+        android:strokeLineCap="round"
+        android:strokeWidth="2"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M37.13,23h-2.5c-2.21,0 -4,1.79 -4,4v42c0,2.21 1.79,4 4,4h26.75c2.21,0 4,-1.79 4,-4v-6"
+        android:strokeColor="@color/color_ic_while"
+        android:strokeLineCap="round"
+        android:strokeWidth="2"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M37.63,48L58.37,48"
+        android:strokeColor="@color/color_ic_while"
+        android:strokeLineCap="round"
+        android:strokeWidth="2"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M37.63,59.01L58.37,59.01"
+        android:strokeColor="@color/color_ic_while"
+        android:strokeLineCap="round"
+        android:strokeWidth="2"/>
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M37.63,36.99L58.37,36.99"
+        android:strokeColor="@color/color_ic_while"
+        android:strokeLineCap="round"
+        android:strokeWidth="2"/>
+</vector>

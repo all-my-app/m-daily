@@ -1,0 +1,82 @@
+package me.leduyhung.mdaily.ui.wallet.adapter;
+
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+//import com.leduyhung.chartlibrary.line.ChartLineView;
+
+import java.util.ArrayList;
+
+import leduyhung.view.mychart.line.ChartLineView;
+import leduyhung.view.myspinner.MySpinnerView;
+import me.leduyhung.mdaily.R;
+import me.leduyhung.mdaily.module.wallet.Wallet;
+
+/**
+ * Created by hungleduy on 11/7/17.
+ */
+
+public class ListWalletAdapter extends RecyclerView.Adapter {
+
+    private Context mContext;
+    private ArrayList<Wallet> arrData;
+
+    public ListWalletAdapter(Context context, ArrayList<Wallet> arrData) {
+
+        this.arrData = arrData;
+        this.mContext = context;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        return new ItemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_wallet, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+        ((ItemView) holder).tTitle.setText(arrData.get(position).getName());
+        if (arrData.get(position).getStatus() == Wallet.WALLET_STATUS_NO_CHANGE) {
+
+            ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.wallet_no_change));
+        } else if (arrData.get(position).getStatus() == Wallet.WALLET_STATUS_INCREASE) {
+
+            ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.wallet_increase));
+        } else {
+
+            ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.wallet_decrease));
+        }
+        ((ItemView) holder).tMoney.setText(arrData.get(position).getMoney() + "");
+//        ((ItemView) holder).itemView.setOnClickListener();
+    }
+
+    @Override
+    public int getItemCount() {
+        return arrData.size();
+    }
+
+    private static class ItemView extends RecyclerView.ViewHolder {
+
+        private ImageView iTitle, iMenu;
+        private TextView tTitle, tStatus, tMoney;
+        private MySpinnerView spin;
+        private ChartLineView chart;
+
+        public ItemView(View v) {
+            super(v);
+
+            iTitle = v.findViewById(R.id.img_title_left);
+            tTitle = v.findViewById(R.id.txt_item_title);
+            tStatus = v.findViewById(R.id.txt_status);
+            tMoney = v.findViewById(R.id.txt_money);
+            spin = v.findViewById(R.id.mSpin_item);
+            chart = v.findViewById(R.id.chartlineview);
+        }
+    }
+}

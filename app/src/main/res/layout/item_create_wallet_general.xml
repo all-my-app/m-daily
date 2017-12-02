@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="@dimen/padding_field_item_create_wallet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_button_create_wallet"
+            android:background="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/padding_left_title_item_create_wallet"
+            android:text="@string/text_infor_general"
+            android:textColor="@color/color_text_white"
+            android:textSize="@dimen/size_text_normal"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_field_item_create_wallet"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <EditText
+                android:id="@+id/etxt_name"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_field_item_create_wallet"
+                android:layout_weight="4.75"
+                android:background="@drawable/background_field_input"
+                android:gravity="center"
+                android:hint="@string/wallet_name"
+                android:padding="@dimen/padding_field_item_create_wallet"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/size_text_normal"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"/>
+
+            <RelativeLayout
+                android:id="@+id/relative_group"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_field_item_create_wallet"
+                android:layout_weight="4.75"
+                android:background="@drawable/background_field_input">
+
+                <TextView
+                    android:id="@+id/txt_combo_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/group"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/size_text_normal"/>
+
+                <ImageView
+                    android:layout_width="@dimen/width_height_icon_dropdown"
+                    android:layout_height="@dimen/width_height_icon_dropdown"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padding_field_item_create_wallet"
+                    app:srcCompat="@drawable/ic_dropdown"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_field_item_create_wallet"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <EditText
+                android:id="@+id/etxt_money_in_wallet"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_field_item_create_wallet"
+                android:layout_weight="4.75"
+                android:background="@drawable/background_field_input"
+                android:gravity="center"
+                android:maxLength="18"
+                android:hint="@string/money_in_wallet"
+                android:inputType="number"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/size_text_normal"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"/>
+
+            <RelativeLayout
+                android:id="@+id/relative_currency"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_field_item_create_wallet"
+                android:layout_weight="4.75"
+                android:background="@drawable/background_field_input">
+
+                <TextView
+                    android:id="@+id/txt_combo_currency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="USD/VND"
+                    android:textColor="@color/color_text_black"
+                    android:textSize="@dimen/size_text_normal"/>
+
+                <ImageView
+                    android:layout_width="@dimen/width_height_icon_dropdown"
+                    android:layout_height="@dimen/width_height_icon_dropdown"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padding_field_item_create_wallet"
+                    app:srcCompat="@drawable/ic_dropdown"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etxt_description"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_field_description_item_create_wallet"
+            android:layout_margin="@dimen/padding_field_item_create_wallet"
+            android:background="@drawable/background_field_input"
+            android:gravity="center"
+            android:hint="@string/note"
+            android:padding="@dimen/padding_field_item_create_wallet"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/size_text_normal"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+</android.support.v7.widget.CardView>

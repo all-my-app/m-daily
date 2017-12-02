@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+    android:background="@color/colorPrimaryDark">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"/>
+
+    <TextView
+        android:layout_width="@dimen/width_img_logo"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:text="M-DAILY"
+        android:textColor="@color/color_text_white"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textSize="@dimen/size_text_logo"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_text_white"
+        android:textSize="@dimen/size_text_normal"
+        android:text="@string/text_description_under_logo"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"/>
+    
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="@dimen/width_btn_login"
+        android:layout_height="@dimen/height_btn_login"
+        android:layout_gravity="center"
+        android:textAllCaps="false"
+        android:textSize="@dimen/size_text_normal"
+        android:text="@string/text_button_login"
+        android:textColor="@color/color_text_white"
+        android:background="@drawable/selector_button_login"/>
+</LinearLayout>

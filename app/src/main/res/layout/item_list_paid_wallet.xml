@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/bar_card"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_button_create_wallet"
+        android:background="@color/colorPrimary"
+        android:paddingLeft="@dimen/padding_left_title_item_create_wallet"
+        android:text="@string/text_infor_general"
+        android:textColor="@color/color_text_white"
+        android:textSize="@dimen/size_text_normal">
+
+        <TextView
+            android:id="@+id/txt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/color_text_white"/>
+
+        <ImageView
+            android:id="@+id/img_share"
+            android:layout_width="@dimen/width_height_icon_remove"
+            android:layout_height="@dimen/width_height_icon_remove"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padding_field_item_create_wallet"
+            app:srcCompat="@drawable/ic_share"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_field_item_create_wallet"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_item_content_paid_wallet">
+
+        <TextView
+            android:id="@+id/money_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/size_text_normal"/>
+
+        <TextView
+            android:id="@+id/money_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/size_text_normal"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="@dimen/padding_field_item_create_wallet"
+        android:layout_marginRight="@dimen/padding_field_item_create_wallet"
+        android:background="@drawable/backgtound_line_dash"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_field_item_create_wallet"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_item_content_paid_wallet">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/size_text_normal"/>
+
+        <TextView
+            android:id="@+id/money_old"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="dsadsada"
+            android:textColor="@color/color_text_gray"
+            android:textSize="@dimen/size_text_small"/>
+
+        <TextView
+            android:id="@+id/money_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/money_old"
+            android:layout_marginTop="@dimen/padding_field_item_create_wallet"
+            android:text="dsadasdad"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/size_text_normal"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="@dimen/padding_field_item_create_wallet"
+        android:layout_marginRight="@dimen/padding_field_item_create_wallet"
+        android:background="@drawable/backgtound_line_dash"/>
+
+    <TextView
+        android:id="@+id/txt_description"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_field_description_item_create_wallet"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:hint="@string/no_description"
+        android:padding="@dimen/padding_left_title_item_create_wallet"
+        android:textColor="@color/color_text_black"
+        android:textSize="@dimen/size_text_normal"/>
+</LinearLayout>

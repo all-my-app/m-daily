@@ -1,0 +1,56 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "me.leduyhung.mdaily"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++14 -frtti -fexceptions"
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.squareup.picasso:picasso:2.3.2'
+    implementation 'com.facebook.android:facebook-android-sdk:4.27.0'
+    compile 'android.arch.lifecycle:runtime:1.0.0-alpha9'
+    compile 'android.arch.lifecycle:extensions:1.0.0-alpha9'
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha9"
+    compile 'android.arch.persistence.room:runtime:1.0.0-alpha9'
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha9"
+    implementation files('libs/my-logg.jar')
+    compile 'leduyhung.my.view:my-spinner:0.0.2'
+    compile 'leduyhung.my.view:my-chart:0.0.3'
+    compile 'leduyhung.my.view:my-progress:0.0.3'
+}

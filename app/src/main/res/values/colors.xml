@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#004604</color>
+    <color name="colorPrimaryDark">#004604</color>
+    <color name="colorAccent">#2e7d32</color>
+
+    <!-- ICON COLOR -->
+    <color name="color_ic_while">#FFFFFF</color>
+
+    <!-- TEXT COLOR -->
+    <color name="color_text_white">#efefef</color>
+    <color name="color_text_black">#202020</color>
+    <color name="color_text_gray">#969696</color>
+
+    <!-- LINE COLOR -->
+    <color name="color_line_black">#646464</color>
+    <color name="color_line_white">#80878787</color>
+    <color name="color_line_dash">#cc7e7e7e</color>
+
+    <!-- BACKGROUND COLOR -->
+    <color name="color_bg_white_light">#FFFFFF</color>
+    <color name="color_bg_white">#efefef</color>
+    <color name="color_bg_gray">#d9d9d9</color>
+    <color name="color_bg_gray50">#6ed9d9d9</color>
+
+</resources>

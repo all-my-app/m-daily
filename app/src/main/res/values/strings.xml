@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">My Daily</string>
+    <string name="facebook_app_id">865603006941334</string>
+    <string name="fb_login_protocol_scheme">fb865603006941334</string>
+
+    <!-- GROUP WALLET -->
+    <string name="group">Nhóm</string>
+    <string name="group_work">Công việc</string>
+    <string name="group_personal">Cá nhân</string>
+    <string name="group_love">Tình yêu</string>
+    <string name="group_saving">Tiết kiệm</string>
+    <string name="group_travel">Du lịch</string>
+
+    <!-- CURRENCY -->
+    <string name="currency">Loại tiền</string>
+    <string name="vnd">VND</string>
+    <string name="usd">USD</string>
+
+    <!-- TYPE EVENT -->
+    <string name="type">Loại</string>
+    <string name="collection">Thu</string>
+    <string name="spent">Chi</string>
+
+    <!-- PERIOD EVENT -->
+    <string name="period_month">Chu kì tháng</string>
+    <string name="period_year">Chu kì năm</string>
+    <string name="day_last_month">Cuối tháng</string>
+    <string name="day_1">Ngày 1</string>
+    <string name="day_2">Ngày 2</string>
+    <string name="day_3">Ngày 3</string>
+    <string name="day_4">Ngày 4</string>
+    <string name="day_5">Ngày 5</string>
+    <string name="day_6">Ngày 6</string>
+    <string name="day_7">Ngày 7</string>
+    <string name="day_8">Ngày 8</string>
+    <string name="day_9">Ngày 9</string>
+    <string name="day_10">Ngày 10</string>
+    <string name="day_11">Ngày 11</string>
+    <string name="day_12">Ngày 12</string>
+    <string name="day_13">Ngày 13</string>
+    <string name="day_14">Ngày 14</string>
+    <string name="day_15">Ngày 15</string>
+    <string name="day_16">Ngày 16</string>
+    <string name="day_17">Ngày 17</string>
+    <string name="day_18">Ngày 18</string>
+    <string name="day_19">Ngày 19</string>
+    <string name="day_20">Ngày 20</string>
+    <string name="day_21">Ngày 21</string>
+    <string name="day_22">Ngày 22</string>
+    <string name="day_23">Ngày 23</string>
+    <string name="day_24">Ngày 24</string>
+    <string name="day_25">Ngày 25</string>
+    <string name="day_26">Ngày 26</string>
+    <string name="day_27">Ngày 27</string>
+    <string name="day_28">Ngày 28</string>
+    <string name="jan">Tháng 1</string>
+    <string name="feb">Tháng 2</string>
+    <string name="mar">Tháng 3</string>
+    <string name="april">Tháng 4</string>
+    <string name="may">Tháng 5</string>
+    <string name="jun">Tháng 6</string>
+    <string name="july">Tháng 7</string>
+    <string name="aug">Tháng 8</string>
+    <string name="sep">Tháng 9</string>
+    <string name="oct">Tháng 10</string>
+    <string name="nov">Tháng 11</string>
+    <string name="dec">Tháng 12</string>
+
+    <!-- LOGIN -->
+    <string name="text_description_under_logo">Thời gian là tiền bạc. Đừng lãng phí nó !</string>
+    <string name="text_button_login">Đăng nhập với facebook</string>
+
+    <!-- HOME -->
+    <string name="text_home_menu_wallet">Ví của tôi</string>
+    <string name="text_home_menu_scheme">Kế hoạch của tôi</string>
+    <string name="text_home_menu_exchange">Đổi tiền tệ</string>
+    <string name="text_home_menu_logout">Đăng xuất</string>
+
+    <!-- LIST WALLET -->
+    <string name="wallet_increase">Tăng</string>
+    <string name="wallet_decrease">Giảm</string>
+    <string name="wallet_no_change">Không đổi</string>
+
+    <!-- CREATE WALLET -->
+    <string name="create_wallet">Tạo ví</string>
+    <string name="text_button_create_wallet">Tạo</string>
+    <string name="text_infor_general">Thông tin chung</string>
+    <string name="text_infor_event">Sự kiện</string>
+    <string name="period">Chu kì</string>
+    <string name="note">Ghi chú</string>
+    <string name="wallet_name">Tên ví</string>
+    <string name="money_in_wallet">Số tiền trong ví</string>
+    <string name="money">Số tiền</string>
+    <string name="content_event">Nội dung sự kiện</string>
+
+    <!-- CREATE PAID WALLET -->
+    <string name="no_description">Không có mô tả nào</string>
+
+    <!-- INFOR WALLET -->
+    <string name="date_create">Ngày tạo</string>
+</resources>

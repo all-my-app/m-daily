@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/color_bg_white"
+                                    android:layout_margin="@dimen/padding_item_list_wallet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/padding_item_list_wallet">
+
+            <ImageView
+                android:id="@+id/img_title_left"
+                android:layout_width="@dimen/width_height_image_left_list_wallet_title"
+                android:layout_height="@dimen/width_height_image_left_list_wallet_title"/>
+
+            <TextView
+                android:id="@+id/txt_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/size_text_normal"
+                android:textColor="@color/color_text_black"
+                android:layout_toRightOf="@+id/img_title_left"/>
+
+            <ImageView
+                android:id="@+id/img_context_menu"
+                android:layout_width="@dimen/width_height_image_left_list_wallet_title"
+                android:layout_height="@dimen/width_height_image_left_list_wallet_title"
+                android:layout_alignParentRight="true"
+                android:background="?android:selectableItemBackground"
+                android:clickable="true"
+                app:srcCompat="@drawable/ic_context_menu"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="@dimen/padding_item_list_wallet"
+            android:layerType="software"
+            android:background="@drawable/backgtound_line_dash"/>
+
+        <leduyhung.view.myspinner.MySpinnerView
+            android:id="@+id/mSpin_item"
+            android:layout_width="@dimen/width_spinner_item_list_wallet"
+            android:layout_height="@dimen/height_spinner_item_list_wallet"
+            android:layout_gravity="center"
+            app:my_spinner_arrow_color="@color/color_text_black"
+            app:my_spinner_arrow_size="@dimen/arrow_size_spinner_item_list_wallet"
+            app:my_spinner_background_color="@color/color_bg_gray"
+            app:my_spinner_border_arrow_size="2dp"
+            app:my_spinner_padding_arrow="@dimen/arrow_size_spinner_item_list_wallet"
+            app:my_spinner_radius="10"
+            app:my_spinner_value_color="@color/color_text_black"
+            app:my_spinner_value_size="@dimen/size_text_normal"/>
+
+        <leduyhung.view.mychart.line.ChartLineView
+            android:id="@+id/chartlineview"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_chart_item_list_wallet"
+            app:chart_line_color_axis="@color/colorPrimary"
+            app:chart_line_color_line_value="@color/colorAccent"
+            app:chart_line_color_ruler="@color/color_bg_gray50"
+            app:chart_line_has_name="false"
+            app:chart_line_size_axis="2dp"
+            app:chart_line_size_axis_value="@dimen/padding_item_list_wallet"
+            app:chart_line_size_line_value="1dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_item_list_wallet"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textSize="@dimen/size_text_normal"/>
+
+            <TextView
+                android:id="@+id/txt_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="@dimen/size_text_normal"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_item_list_wallet"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:textSize="@dimen/size_text_normal"/>
+
+            <TextView
+                android:id="@+id/txt_money"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="@dimen/size_text_large"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
