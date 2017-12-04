@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.leduyhung.loglibrary.Logg;
 
@@ -27,7 +26,6 @@ import me.leduyhung.mdaily.db.AppDatabase;
 import me.leduyhung.mdaily.module.wallet.Wallet;
 import me.leduyhung.mdaily.observer.ObserverTag;
 import me.leduyhung.mdaily.observer.UiObserver;
-import me.leduyhung.mdaily.observer.listener.ActionBarEvent;
 import me.leduyhung.mdaily.ui.wallet.adapter.ListWalletAdapter;
 
 /**
@@ -125,19 +123,19 @@ public class ListWalletFragment extends Fragment implements View.OnClickListener
     @Override
     public void onChanged(@Nullable final List<Wallet> wallets) {
 
-        Logg.error(getClass(), "wallet -> " + wallets.size());
         arrData.clear();
         arrData.addAll(wallets);
-        ((Activity) mContext).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (wallets.size() > adap.getItemCount())
-                    adap.notifyItemInserted(wallets.size());
-                else
-                    adap.notifyDataSetChanged();
-                recycler.smoothScrollToPosition(wallets.size() - 1);
-            }
-        });
+        if (wallets.size() > 0)
+            ((Activity) mContext).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (wallets.size() > adap.getItemCount())
+                        adap.notifyItemInserted(wallets.size());
+                    else
+                        adap.notifyDataSetChanged();
+                    recycler.smoothScrollToPosition(wallets.size() - 1);
+                }
+            });
 
     }
 

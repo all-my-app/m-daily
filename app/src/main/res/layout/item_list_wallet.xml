@@ -19,7 +19,8 @@
             <ImageView
                 android:id="@+id/img_title_left"
                 android:layout_width="@dimen/width_height_image_left_list_wallet_title"
-                android:layout_height="@dimen/width_height_image_left_list_wallet_title"/>
+                android:layout_height="@dimen/width_height_image_left_list_wallet_title"
+                app:srcCompat="@drawable/ic_wallet_saving"/>
 
             <TextView
                 android:id="@+id/txt_item_title"
@@ -28,6 +29,7 @@
                 android:layout_centerVertical="true"
                 android:textSize="@dimen/size_text_normal"
                 android:textColor="@color/color_text_black"
+                android:layout_marginLeft="@dimen/arrow_size_spinner_item_list_wallet"
                 android:layout_toRightOf="@+id/img_title_left"/>
 
             <ImageView

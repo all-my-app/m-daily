@@ -37,7 +37,7 @@
     <dimen name="arrow_size_spinner_item_list_wallet">20dp</dimen>
     <dimen name="margin_right_bottom_add_wallet_button">25dp</dimen>
     <dimen name="padding_item_list_wallet">10dp</dimen>
-    <dimen name="width_height_image_left_list_wallet_title">25dp</dimen>
+    <dimen name="width_height_image_left_list_wallet_title">30dp</dimen>
     <dimen name="width_spinner_item_list_wallet">200dp</dimen>
     <dimen name="height_spinner_item_list_wallet">40dp</dimen>
     <dimen name="height_chart_item_list_wallet">220dp</dimen>
