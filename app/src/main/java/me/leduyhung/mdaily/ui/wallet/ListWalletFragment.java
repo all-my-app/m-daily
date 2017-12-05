@@ -78,6 +78,7 @@ public class ListWalletFragment extends Fragment implements View.OnClickListener
         super.onViewCreated(view, savedInstanceState);
 
         bAdd.setOnClickListener(this);
+        tTitle.setText(mContext.getResources().getString(R.string.wallet_title_actionbar));
         configRecycler();
     }
 

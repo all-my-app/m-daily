@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import leduyhung.view.mychart.line.ChartLineView;
 import leduyhung.view.myspinner.MySpinnerView;
 import me.leduyhung.mdaily.R;
+import me.leduyhung.mdaily.module.module_view.groupwallet.GroupWallet;
 import me.leduyhung.mdaily.module.wallet.Wallet;
 
 /**
@@ -51,6 +52,27 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
         } else {
 
             ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.wallet_decrease));
+        }
+
+        switch (arrData.get(position).getGroup()) {
+            case GroupWallet.GROUP_ID_LOVE:
+                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_love));
+                break;
+            case GroupWallet.GROUP_ID_PERSONAL:
+                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_personal));
+                break;
+            case GroupWallet.GROUP_ID_SAVING:
+                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_saving));
+                break;
+            case GroupWallet.GROUP_ID_TRAVEL:
+                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_travel));
+                break;
+            case GroupWallet.GROUP_ID_WORK:
+                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_work));
+                break;
+            default:
+                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_love));
+                break;
         }
         ((ItemView) holder).tMoney.setText(arrData.get(position).getMoney() + "");
 //        ((ItemView) holder).itemView.setOnClickListener();

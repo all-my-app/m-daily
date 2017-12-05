@@ -1,19 +1,47 @@
 package me.leduyhung.mdaily.ui.wallet;
 
+import android.app.Activity;
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import leduyhung.view.myspinner.MySpinnerView;
+import me.leduyhung.mdaily.R;
+import me.leduyhung.mdaily.db.AppDatabase;
+import me.leduyhung.mdaily.module.wallet.Bill;
+import me.leduyhung.mdaily.module.wallet.Statistical;
+import me.leduyhung.mdaily.module.wallet.Wallet;
+import me.leduyhung.mdaily.ui.wallet.adapter.ListPaidWalletAdapter;
 
 /**
  * Created by hungleduy on 11/14/17.
  */
 
-public class ListPaidWalletFragment extends Fragment{
+public class ListPaidWalletFragment extends Fragment implements View.OnClickListener, Observer<Wallet> {
 
     private Context mContext;
+    private View v;
+    private ImageView iLeft, iRight;
+    private TextView tTitle;
+    private MySpinnerView spiner;
+    private FloatingActionButton bAdd;
+    private RecyclerView recycler;
+    private ListPaidWalletAdapter adap;
+    private ArrayList<Statistical> arrData;
+
+    private int idWallet;
 
     @Override
     public void onAttach(Context context) {
@@ -34,11 +62,58 @@ public class ListPaidWalletFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+
+        v = inflater.inflate(R.layout.fragment_list_paid_wallet, container, false);
+        iLeft = v.findViewById(R.id.img_left);
+        iRight = v.findViewById(R.id.img_right);
+        tTitle = v.findViewById(R.id.txt_title);
+        spiner = v.findViewById(R.id.spinner_actionbar);
+        bAdd = v.findViewById(R.id.btn_add);
+        recycler = v.findViewById(R.id.recycler);
+        return v;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        tTitle.setText(mContext.getResources().getString(R.string.paid_title_actionbar));
+        configRecycler();
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.img_left:
+                ((Activity) mContext).finish();
+                break;
+            case R.id.img_right:
+                break;
+        }
+    }
+
+    @Override
+    public void onChanged(@Nullable Wallet wallet) {
+
+        if (wallet.getStatistics() != null) {
+            arrData.clear();
+            arrData.addAll(wallet.getStatistics());
+            if (arrData.size() > 0) {
+                adap.updateListPaid(arrData.get(0).getBills());
+            }
+        }
+    }
+
+    private void configRecycler() {
+
+        arrData = new ArrayList<>();
+        adap = new ListPaidWalletAdapter(mContext, new ArrayList<Bill>());
+        LinearLayoutManager manager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        recycler.setHasFixedSize(true);
+        recycler.setLayoutManager(manager);
+        recycler.setAdapter(adap);
+        AppDatabase.newInstance(mContext).walletDao().getWalletById(idWallet).observeForever(this);
     }
 }

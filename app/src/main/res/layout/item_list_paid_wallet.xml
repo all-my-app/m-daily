@@ -48,7 +48,7 @@
             android:textSize="@dimen/size_text_normal"/>
 
         <TextView
-            android:id="@+id/money_change"
+            android:id="@+id/txt_money_change"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -75,25 +75,24 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:textColor="@color/color_text_black"
+            android:text="@string/root"
             android:textSize="@dimen/size_text_normal"/>
 
         <TextView
-            android:id="@+id/money_old"
+            android:id="@+id/txt_money_old"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="dsadsada"
             android:textColor="@color/color_text_gray"
             android:textSize="@dimen/size_text_small"/>
 
         <TextView
-            android:id="@+id/money_new"
+            android:id="@+id/txt_money_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/money_old"
+            android:layout_below="@+id/txt_money_old"
             android:layout_marginTop="@dimen/padding_field_item_create_wallet"
-            android:text="dsadasdad"
             android:textColor="@color/color_text_black"
             android:textSize="@dimen/size_text_normal"/>
     </RelativeLayout>

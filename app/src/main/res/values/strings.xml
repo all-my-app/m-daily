@@ -77,9 +77,12 @@
     <string name="text_home_menu_logout">Đăng xuất</string>
 
     <!-- LIST WALLET -->
+    <string name="wallet_title_actionbar">Ví của bạn</string>
     <string name="wallet_increase">Tăng</string>
     <string name="wallet_decrease">Giảm</string>
     <string name="wallet_no_change">Không đổi</string>
+    <string name="wallet_label_tendency">Xu Hướng</string>
+    <string name="wallet_label_total">Tổng</string>
 
     <!-- CREATE WALLET -->
     <string name="create_wallet">Tạo ví</string>
@@ -98,4 +101,8 @@
 
     <!-- INFOR WALLET -->
     <string name="date_create">Ngày tạo</string>
+    
+    <!-- LIST PAID WALLET -->
+    <string name="paid_title_actionbar">Thông tin chi tiêu</string>
+    <string name="root">Gốc</string>
 </resources>

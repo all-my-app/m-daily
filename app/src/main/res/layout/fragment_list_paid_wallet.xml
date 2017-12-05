@@ -12,17 +12,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/action_bar"
-        android:background="@drawable/background_line_shadow_down"/>
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/action_bar"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/action_bar"
+        android:background="@drawable/background_line_shadow_down"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btn_add"
