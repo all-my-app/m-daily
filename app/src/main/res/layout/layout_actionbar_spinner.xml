@@ -22,9 +22,9 @@
         android:id="@+id/txt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/img_left"
         android:layout_above="@+id/spinner_actionbar"
+        android:layout_marginBottom="@dimen/padding_action_bar"
         android:textColor="@color/color_text_white"
         android:textSize="@dimen/size_text_large"/>
 

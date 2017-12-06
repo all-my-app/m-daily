@@ -1,15 +1,19 @@
 package me.leduyhung.mdaily.ui.wallet.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 //import com.leduyhung.chartlibrary.line.ChartLineView;
+
+import com.leduyhung.loglibrary.Logg;
 
 import java.util.ArrayList;
 
@@ -18,6 +22,7 @@ import leduyhung.view.myspinner.MySpinnerView;
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.module.module_view.groupwallet.GroupWallet;
 import me.leduyhung.mdaily.module.wallet.Wallet;
+import me.leduyhung.mdaily.ui.wallet.WalletDetailActivity;
 
 /**
  * Created by hungleduy on 11/7/17.
@@ -75,7 +80,13 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
                 break;
         }
         ((ItemView) holder).tMoney.setText(arrData.get(position).getMoney() + "");
-//        ((ItemView) holder).itemView.setOnClickListener();
+        ((ItemView) holder).lItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mContext.startActivity(new Intent(mContext, WalletDetailActivity.class));
+            }
+        });
     }
 
     @Override
@@ -85,6 +96,7 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
 
     private static class ItemView extends RecyclerView.ViewHolder {
 
+        private LinearLayout lItem;
         private ImageView iTitle, iMenu;
         private TextView tTitle, tStatus, tMoney;
         private MySpinnerView spin;
@@ -93,6 +105,7 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
         public ItemView(View v) {
             super(v);
 
+            lItem = v.findViewById(R.id.linear_item);
             iTitle = v.findViewById(R.id.img_title_left);
             tTitle = v.findViewById(R.id.txt_item_title);
             tStatus = v.findViewById(R.id.txt_status);

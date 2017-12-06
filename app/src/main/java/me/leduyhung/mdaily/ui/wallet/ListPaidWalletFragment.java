@@ -78,6 +78,8 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
         super.onViewCreated(view, savedInstanceState);
 
         tTitle.setText(mContext.getResources().getString(R.string.paid_title_actionbar));
+        iLeft.setOnClickListener(this);
+        iRight.setOnClickListener(this);
         configRecycler();
     }
 

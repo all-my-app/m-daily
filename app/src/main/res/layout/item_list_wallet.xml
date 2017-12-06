@@ -3,12 +3,15 @@
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:background="@color/color_bg_white"
-                                    android:layout_margin="@dimen/padding_item_list_wallet">
+                                    android:layout_margin="@dimen/padding_item_list_wallet"
+                                    android:background="@color/color_bg_white">
 
     <LinearLayout
+        android:id="@+id/linear_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?android:selectableItemBackground"
+        android:clickable="true"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -27,10 +30,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:textSize="@dimen/size_text_normal"
-                android:textColor="@color/color_text_black"
                 android:layout_marginLeft="@dimen/arrow_size_spinner_item_list_wallet"
-                android:layout_toRightOf="@+id/img_title_left"/>
+                android:layout_toRightOf="@+id/img_title_left"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/size_text_normal"/>
 
             <ImageView
                 android:id="@+id/img_context_menu"
@@ -46,8 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="@dimen/padding_item_list_wallet"
-            android:layerType="software"
-            android:background="@drawable/backgtound_line_dash"/>
+            android:background="@drawable/backgtound_line_dash"
+            android:layerType="software"/>
 
         <leduyhung.view.myspinner.MySpinnerView
             android:id="@+id/mSpin_item"
@@ -84,20 +87,20 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_item_list_wallet"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:textSize="@dimen/size_text_normal"
-                android:layout_marginLeft="@dimen/padding_item_list_wallet"
-                android:text="@string/wallet_label_tendency"/>
+                android:text="@string/wallet_label_tendency"
+                android:textSize="@dimen/size_text_normal"/>
 
             <TextView
                 android:id="@+id/txt_status"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padding_item_list_wallet"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:textSize="@dimen/size_text_normal"
-                android:layout_marginRight="@dimen/padding_item_list_wallet"/>
+                android:textSize="@dimen/size_text_normal"/>
         </LinearLayout>
 
         <LinearLayout
@@ -110,20 +113,20 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_item_list_wallet"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:textSize="@dimen/size_text_normal"
-                android:layout_marginLeft="@dimen/padding_item_list_wallet"
-                android:text="@string/wallet_label_total"/>
+                android:text="@string/wallet_label_total"
+                android:textSize="@dimen/size_text_normal"/>
 
             <TextView
                 android:id="@+id/txt_money"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/padding_item_list_wallet"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:textSize="@dimen/size_text_large"
-                android:layout_marginRight="@dimen/padding_item_list_wallet"/>
+                android:textSize="@dimen/size_text_large"/>
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>
