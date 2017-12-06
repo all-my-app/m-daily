@@ -1,9 +1,5 @@
 package me.leduyhung.mdaily.observer;
 
-import com.leduyhung.loglibrary.Logg;
-
-import java.util.ArrayList;
-
 import me.leduyhung.mdaily.observer.listener.ActionBarEvent;
 import me.leduyhung.mdaily.observer.listener.UserEvent;
 
@@ -50,9 +46,13 @@ public class UiObserver {
             case ObserverTag.TAG_USER_LOGOUT_EVENT:
                 if (userLogoutEvent != null)
                     userLogoutEvent.onLogoutComplete();
-            case ObserverTag.TAG_OPEN_HOME_MENU:
+            case ObserverTag.TAG_ICON_LEFT_ACTION_BAR_CLICK:
                 if (actionBarEvent != null)
                     actionBarEvent.onImgLeftClick();
+                break;
+            case ObserverTag.TAG_ICON_RIGHT_ACTION_BAR_CLICK:
+                if (actionBarEvent != null)
+                    actionBarEvent.onImgRightClick();
                 break;
         }
     }

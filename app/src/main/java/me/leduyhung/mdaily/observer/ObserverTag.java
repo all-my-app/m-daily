@@ -10,5 +10,6 @@ public class ObserverTag {
     public static final String TAG_USER_LOGIN_CANCEL = "TAG_USER_LOGIN_CANCEL";
     public static final String TAG_USER_LOGIN_FAIL = "TAG_USER_LOGIN_FAIL";
     public static final String TAG_USER_LOGOUT_EVENT = "TAG_USER_LOGOUT_EVENT";
-    public static final String TAG_OPEN_HOME_MENU = "TAG_OPEN_HOME_MENU";
+    public static final String TAG_ICON_LEFT_ACTION_BAR_CLICK = "TAG_ICON_LEFT_ACTION_BAR_CLICK";
+    public static final String TAG_ICON_RIGHT_ACTION_BAR_CLICK = "TAG_ICON_RIGHT_ACTION_BAR_CLICK";
 }

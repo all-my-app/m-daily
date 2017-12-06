@@ -1,6 +1,5 @@
 package me.leduyhung.mdaily.ui.wallet;
 
-import android.app.Activity;
 import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.os.Bundle;
@@ -23,6 +22,8 @@ import me.leduyhung.mdaily.db.AppDatabase;
 import me.leduyhung.mdaily.module.wallet.Bill;
 import me.leduyhung.mdaily.module.wallet.Statistical;
 import me.leduyhung.mdaily.module.wallet.Wallet;
+import me.leduyhung.mdaily.observer.ObserverTag;
+import me.leduyhung.mdaily.observer.UiObserver;
 import me.leduyhung.mdaily.ui.wallet.adapter.ListPaidWalletAdapter;
 
 /**
@@ -77,7 +78,7 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tTitle.setText(mContext.getResources().getString(R.string.paid_title_actionbar));
+        tTitle.setText(mContext.getResources().getString(R.string.wallet_paid_title_actionbar));
         iLeft.setOnClickListener(this);
         iRight.setOnClickListener(this);
         configRecycler();
@@ -89,9 +90,10 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
         switch (view.getId()) {
 
             case R.id.img_left:
-                ((Activity) mContext).finish();
+                UiObserver.newInstance().notify(ObserverTag.TAG_ICON_LEFT_ACTION_BAR_CLICK);
                 break;
             case R.id.img_right:
+                UiObserver.newInstance().notify(ObserverTag.TAG_ICON_RIGHT_ACTION_BAR_CLICK);
                 break;
         }
     }

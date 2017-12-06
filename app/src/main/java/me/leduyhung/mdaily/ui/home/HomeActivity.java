@@ -58,14 +58,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_home);
         initView();
         openListWallet();
-        UiObserver.newInstance().listener(actionBarEvent);
-        UiObserver.newInstance().listener(userLogout);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
+        UiObserver.newInstance().listener(actionBarEvent);
+        UiObserver.newInstance().listener(userLogout);
     }
 
     @Override

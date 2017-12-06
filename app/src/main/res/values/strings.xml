@@ -100,9 +100,10 @@
     <string name="no_description">Không có mô tả nào</string>
 
     <!-- INFOR WALLET -->
+    <string name="wallet_infor_title_actionbar">Thông tin ví</string>
     <string name="date_create">Ngày tạo</string>
     
     <!-- LIST PAID WALLET -->
-    <string name="paid_title_actionbar">Thông tin chi tiêu</string>
+    <string name="wallet_paid_title_actionbar">Thông tin chi tiêu</string>
     <string name="root">Gốc</string>
 </resources>

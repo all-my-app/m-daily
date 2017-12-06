@@ -16,8 +16,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.leduyhung.loglibrary.Logg;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,7 +109,7 @@ public class ListWalletFragment extends Fragment implements View.OnClickListener
 
             case R.id.img_left:
 
-                UiObserver.newInstance().notify(ObserverTag.TAG_OPEN_HOME_MENU);
+                UiObserver.newInstance().notify(ObserverTag.TAG_ICON_LEFT_ACTION_BAR_CLICK);
                 break;
             case R.id.btn_add:
                 Intent intent = new Intent(mContext, CreateWalletActivity.class);
