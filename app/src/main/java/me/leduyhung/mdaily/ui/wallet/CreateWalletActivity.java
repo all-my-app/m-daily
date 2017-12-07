@@ -13,6 +13,7 @@ import com.leduyhung.loglibrary.Logg;
 
 import java.util.ArrayList;
 
+import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.dialog.DialogSelectItem;
 import me.leduyhung.mdaily.module.module_view.createwallet.CreateWallet;
@@ -58,8 +59,7 @@ public class CreateWalletActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_wallet);
         initView();
-        totalWallet = getIntent().getIntExtra("data", 0);
-        Logg.error(getClass(), "data ->> " + totalWallet);
+        totalWallet = getIntent().getIntExtra(Constant.ListWallet.KEY_INTENT_TOTAL_WALLET, 0);
     }
 
     @Override

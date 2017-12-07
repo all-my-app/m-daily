@@ -8,6 +8,7 @@ import android.view.Gravity;
 
 import com.leduyhung.loglibrary.Logg;
 
+import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.observer.UiObserver;
 import me.leduyhung.mdaily.observer.listener.ActionBarEvent;
@@ -20,11 +21,15 @@ public class WalletDetailActivity extends AppCompatActivity implements ActionBar
     private ListPaidWalletFragment listPaidWalletFragment;
     private WalletInforFragment walletInforFragment;
 
+    private int idWallet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wallet_detail);
         openListWallet();
+
+        idWallet = getIntent().getIntExtra(Constant.ListWallet.KEY_INTENT_ID_WALLET, -1);
     }
 
     @Override
@@ -50,7 +55,10 @@ public class WalletDetailActivity extends AppCompatActivity implements ActionBar
 
         if (listPaidWalletFragment == null) {
 
+            Bundle bundle = new Bundle();
+            bundle.putInt(Constant.ListWallet.KEY_BUNDLE_ID_WALLET, idWallet);
             listPaidWalletFragment = new ListPaidWalletFragment();
+            listPaidWalletFragment.setArguments(bundle);
             manager = getSupportFragmentManager();
             transaction = manager.beginTransaction().replace(R.id.frame_content, listPaidWalletFragment);
             transaction.commit();
@@ -63,6 +71,9 @@ public class WalletDetailActivity extends AppCompatActivity implements ActionBar
 
             if (walletInforFragment == null)
                 walletInforFragment = new WalletInforFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt(Constant.ListWallet.KEY_BUNDLE_ID_WALLET, idWallet);
+            walletInforFragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.fragment_flip_right_in,
                     R.anim.fragment_flip_right_out,
                     R.anim.fragment_flip_left_in,

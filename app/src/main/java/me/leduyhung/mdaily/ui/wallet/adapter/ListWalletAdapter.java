@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import leduyhung.view.mychart.line.ChartLineView;
 import leduyhung.view.myspinner.MySpinnerView;
+import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.module.module_view.groupwallet.GroupWallet;
 import me.leduyhung.mdaily.module.wallet.Wallet;
@@ -45,7 +46,7 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         ((ItemView) holder).tTitle.setText(arrData.get(position).getName());
         if (arrData.get(position).getStatus() == Wallet.WALLET_STATUS_NO_CHANGE) {
@@ -84,7 +85,9 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
 
-                mContext.startActivity(new Intent(mContext, WalletDetailActivity.class));
+                Intent intent = new Intent(mContext, WalletDetailActivity.class);
+                intent.putExtra(Constant.ListWallet.KEY_INTENT_ID_WALLET, arrData.get(position).getId());
+                mContext.startActivity(intent);
             }
         });
     }

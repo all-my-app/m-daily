@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import me.leduyhung.mdaily.R;
+import me.leduyhung.mdaily.helper.CalendarUtil;
 import me.leduyhung.mdaily.module.wallet.Bill;
 
 /**
@@ -37,6 +38,20 @@ public class ListPaidWalletAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
+        ((ItemView)holder).tTime.setText(CalendarUtil.newInstance().convertDateToString(arrData.get(position).getPayDate()));
+        ((ItemView)holder).tMoneyChange.setText(arrData.get(position).getChangeMoney() + "");
+        ((ItemView)holder).tMoneyOld.setText(arrData.get(position).getOldMoney() + "");
+        ((ItemView)holder).tMoneyNew.setText((arrData.get(position).getOldMoney() + arrData.get(position).getChangeMoney()) + "");
+        ((ItemView)holder).tDescription.setText(arrData.get(position).getDescription());
+        if (arrData.get(position).getChangeMoney() >= 0) {
+
+            ((ItemView)holder).tStatus.setText(mContext.getResources().getString(R.string.collection));
+            ((ItemView)holder).reBarCard.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+        } else {
+
+            ((ItemView)holder).tStatus.setText(mContext.getResources().getString(R.string.spent));
+            ((ItemView)holder).reBarCard.setBackgroundColor(mContext.getResources().getColor(R.color.colorRed));
+        }
     }
 
     @Override
@@ -54,7 +69,7 @@ public class ListPaidWalletAdapter extends RecyclerView.Adapter {
     private static class ItemView extends RecyclerView.ViewHolder {
 
         private RelativeLayout reBarCard;
-        private TextView tTime, tStatus, tMoneyChange, tMoneyOld, tMoneyNew;
+        private TextView tTime, tStatus, tMoneyChange, tMoneyOld, tMoneyNew, tDescription;
         private ImageView iShare;
 
         public ItemView(View v) {
@@ -63,9 +78,11 @@ public class ListPaidWalletAdapter extends RecyclerView.Adapter {
             reBarCard = v.findViewById(R.id.bar_card);
             iShare = v.findViewById(R.id.img_share);
             tTime = v.findViewById(R.id.txt_time);
+            tStatus = v.findViewById(R.id.txt_status);
             tMoneyChange = v.findViewById(R.id.txt_money_change);
             tMoneyOld = v.findViewById(R.id.txt_money_old);
             tMoneyNew = v.findViewById(R.id.txt_money_new);
+            tDescription = v.findViewById(R.id.txt_description);
         }
     }
 }

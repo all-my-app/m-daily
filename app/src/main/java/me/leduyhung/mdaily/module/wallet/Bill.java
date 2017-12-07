@@ -11,7 +11,7 @@ public class Bill {
     private Date payDate;
     private String description;
     private int oldMoney;
-    private int newMoney;
+    private int changeMoney;
 
     public Bill() {
     }
@@ -40,11 +40,11 @@ public class Bill {
         this.oldMoney = oldMoney;
     }
 
-    public int getNewMoney() {
-        return newMoney;
+    public int getChangeMoney() {
+        return changeMoney;
     }
 
-    public void setNewMoney(int newMoney) {
-        this.newMoney = newMoney;
+    public void setChangeMoney(int changeMoney) {
+        this.changeMoney = changeMoney;
     }
 }

@@ -3,6 +3,7 @@
     <color name="colorPrimary">#004604</color>
     <color name="colorPrimaryDark">#004604</color>
     <color name="colorAccent">#2e7d32</color>
+    <color name="colorRed">#c64040</color>
 
     <!-- ICON COLOR -->
     <color name="color_ic_while">#FFFFFF</color>

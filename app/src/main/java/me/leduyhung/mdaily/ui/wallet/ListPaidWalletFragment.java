@@ -14,9 +14,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.leduyhung.loglibrary.Logg;
+
 import java.util.ArrayList;
 
 import leduyhung.view.myspinner.MySpinnerView;
+import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.db.AppDatabase;
 import me.leduyhung.mdaily.module.wallet.Bill;
@@ -40,8 +43,8 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
     private FloatingActionButton bAdd;
     private RecyclerView recycler;
     private ListPaidWalletAdapter adap;
-    private ArrayList<Statistical> arrData;
 
+    private ArrayList<Statistical> arrData;
     private int idWallet;
 
     @Override
@@ -54,6 +57,9 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        idWallet = getArguments().getInt(Constant.ListWallet.KEY_BUNDLE_ID_WALLET);
+        Logg.error(getClass(), "id wallet -> " + idWallet);
     }
 
     @Override
@@ -101,6 +107,7 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
     @Override
     public void onChanged(@Nullable Wallet wallet) {
 
+        Logg.error(getClass(), wallet.getName() + "  --->");
         if (wallet.getStatistics() != null) {
             arrData.clear();
             arrData.addAll(wallet.getStatistics());

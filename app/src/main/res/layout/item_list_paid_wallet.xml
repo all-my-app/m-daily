@@ -41,7 +41,7 @@
         android:padding="@dimen/padding_item_content_paid_wallet">
 
         <TextView
-            android:id="@+id/money_status"
+            android:id="@+id/txt_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_text_black"

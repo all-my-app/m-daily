@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.db.AppDatabase;
 import me.leduyhung.mdaily.module.wallet.Wallet;
@@ -113,7 +114,7 @@ public class ListWalletFragment extends Fragment implements View.OnClickListener
                 break;
             case R.id.btn_add:
                 Intent intent = new Intent(mContext, CreateWalletActivity.class);
-                intent.putExtra("data", arrData.size());
+                intent.putExtra(Constant.ListWallet.KEY_INTENT_TOTAL_WALLET, arrData.size());
                 startActivity(intent);
                 break;
         }
