@@ -116,6 +116,7 @@
         android:layout_height="@dimen/height_field_description_item_create_wallet"
         android:layout_centerVertical="true"
         android:gravity="center"
+        android:maxLength="100"
         android:hint="@string/no_description"
         android:padding="@dimen/padding_left_title_item_create_wallet"
         android:textColor="@color/color_text_black"

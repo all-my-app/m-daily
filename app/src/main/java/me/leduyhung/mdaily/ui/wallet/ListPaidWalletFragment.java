@@ -59,7 +59,6 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
         super.onCreate(savedInstanceState);
 
         idWallet = getArguments().getInt(Constant.ListWallet.KEY_BUNDLE_ID_WALLET);
-        Logg.error(getClass(), "id wallet -> " + idWallet);
     }
 
     @Override

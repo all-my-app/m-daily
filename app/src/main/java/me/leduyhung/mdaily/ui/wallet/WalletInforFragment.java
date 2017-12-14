@@ -1,30 +1,49 @@
 package me.leduyhung.mdaily.ui.wallet;
 
+import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.leduyhung.loglibrary.Logg;
+
 import leduyhung.view.myspinner.MySpinnerView;
+import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
+import me.leduyhung.mdaily.db.AppDatabase;
+import me.leduyhung.mdaily.module.wallet.Wallet;
 import me.leduyhung.mdaily.observer.ObserverTag;
 import me.leduyhung.mdaily.observer.UiObserver;
+import me.leduyhung.mdaily.ui.wallet.adapter.WalletDetailAdapter;
 
 /**
  * Created by hungleduy on 11/14/17.
  */
 
-public class WalletInforFragment extends Fragment implements View.OnClickListener{
+public class WalletInforFragment extends Fragment implements View.OnClickListener, Observer<Wallet> {
+
+    private Handler handConfigRecycler;
 
     private Context mContext;
     private View v;
     private ImageView iLeft, iRight;
     private TextView tTitle;
     private MySpinnerView spiner;
+    private RecyclerView recycler;
+
+    private WalletDetailAdapter adap;
+
+    private int idWallet;
+
 
     @Override
     public void onAttach(Context context) {
@@ -35,6 +54,8 @@ public class WalletInforFragment extends Fragment implements View.OnClickListene
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        idWallet = getArguments().getInt(Constant.ListWallet.KEY_BUNDLE_ID_WALLET);
     }
 
     @Override
@@ -45,6 +66,7 @@ public class WalletInforFragment extends Fragment implements View.OnClickListene
         iRight = v.findViewById(R.id.img_right);
         tTitle = v.findViewById(R.id.txt_title);
         spiner = v.findViewById(R.id.spinner_actionbar);
+        recycler = v.findViewById(R.id.recycler);
         return v;
     }
 
@@ -55,6 +77,7 @@ public class WalletInforFragment extends Fragment implements View.OnClickListene
         tTitle.setText(mContext.getResources().getString(R.string.wallet_infor_title_actionbar));
         iLeft.setOnClickListener(this);
         iRight.setOnClickListener(this);
+        AppDatabase.newInstance(mContext).walletDao().getWalletById(idWallet).observeForever(this);
     }
 
     @Override
@@ -69,5 +92,29 @@ public class WalletInforFragment extends Fragment implements View.OnClickListene
                 UiObserver.newInstance().notify(ObserverTag.TAG_ICON_RIGHT_ACTION_BAR_CLICK);
                 break;
         }
+    }
+
+    @Override
+    public void onChanged(@Nullable final Wallet wallet) {
+
+        if (wallet != null) {
+            handConfigRecycler = new Handler();
+            handConfigRecycler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    configRecycler(wallet);
+                }
+            }, 130);
+        }
+    }
+
+    private void configRecycler(Wallet wallet) {
+
+        adap = new WalletDetailAdapter(mContext, wallet);
+        LinearLayoutManager manager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        recycler.setHasFixedSize(true);
+        recycler.setLayoutManager(manager);
+        recycler.setAdapter(adap);
     }
 }
