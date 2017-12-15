@@ -21,6 +21,8 @@ import leduyhung.view.mychart.line.ChartLineView;
 import leduyhung.view.myspinner.MySpinnerView;
 import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
+import me.leduyhung.mdaily.helper.NumberConvert;
+import me.leduyhung.mdaily.module.module_view.currency.Currency;
 import me.leduyhung.mdaily.module.module_view.groupwallet.GroupWallet;
 import me.leduyhung.mdaily.module.wallet.Wallet;
 import me.leduyhung.mdaily.ui.wallet.WalletDetailActivity;
@@ -80,7 +82,10 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
                 ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_love));
                 break;
         }
-        ((ItemView) holder).tMoney.setText(arrData.get(position).getMoney() + "");
+        ((ItemView) holder).tMoney.setText(NumberConvert
+                .newInstance().convertNumberCurrency(arrData.get(position).getMoney(),
+                        arrData.get(position).getCurrency() == Currency.CURRENCY_ID_VND ? mContext.getResources().getString(R.string.vnd) :
+                mContext.getResources().getString(R.string.usd)));
         ((ItemView) holder).lItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

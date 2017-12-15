@@ -10,6 +10,8 @@ import android.widget.TextView;
 import java.util.zip.Inflater;
 
 import me.leduyhung.mdaily.R;
+import me.leduyhung.mdaily.helper.NumberConvert;
+import me.leduyhung.mdaily.module.module_view.currency.Currency;
 import me.leduyhung.mdaily.module.wallet.Wallet;
 
 /**
@@ -58,14 +60,20 @@ public class WalletDetailAdapter extends RecyclerView.Adapter {
         if (getItemViewType(position) == TYPE_GENERAL) {
 
             ((ItemGeneral)holder).tName.setText(wallet.getName());
-            ((ItemGeneral)holder).tMoney.setText(wallet.getMoney() + "");
+            ((ItemGeneral)holder).tMoney.setText(NumberConvert.newInstance()
+                    .convertNumberCurrency(wallet.getMoney(),
+                            wallet.getCurrency() == Currency.CURRENCY_ID_VND ? mContext.getResources().getString(R.string.vnd) :
+                                    mContext.getResources().getString(R.string.usd)));
             ((ItemGeneral)holder).tGroup.setText(wallet.getGroup() + "");
 //            ((ItemGeneral)holder).tDateCrete.setText(wallet.get);
             ((ItemGeneral)holder).tDescription.setText(wallet.getDescription());
         } else {
 
             ((ItemEvent)holder).tType.setText(wallet.getPeriodics().get(position - 1).getType() + "");
-            ((ItemEvent)holder).tMoney.setText(wallet.getPeriodics().get(position - 1).getMoney_event() + "");
+            ((ItemEvent)holder).tMoney.setText(NumberConvert
+                    .newInstance().convertNumberCurrency(wallet.getPeriodics().get(position - 1).getMoney_event(),
+                            wallet.getCurrency() == Currency.CURRENCY_ID_VND ? mContext.getResources().getString(R.string.vnd) :
+                    mContext.getResources().getString(R.string.usd)));
             ((ItemEvent)holder).tPeriod.setText(wallet.getPeriodics().get(position - 1).getPeriod() + "");
             ((ItemEvent)holder).tDescription.setText(wallet.getPeriodics().get(position - 1).getDescription());
         }
