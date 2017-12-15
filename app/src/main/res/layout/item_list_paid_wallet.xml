@@ -61,7 +61,7 @@
         android:layout_height="2dp"
         android:layout_marginLeft="@dimen/padding_field_item_create_wallet"
         android:layout_marginRight="@dimen/padding_field_item_create_wallet"
-        android:background="@drawable/backgtound_line_dash"/>
+        android:background="@drawable/background_line_dash"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
         android:layout_height="2dp"
         android:layout_marginLeft="@dimen/padding_field_item_create_wallet"
         android:layout_marginRight="@dimen/padding_field_item_create_wallet"
-        android:background="@drawable/backgtound_line_dash"/>
+        android:background="@drawable/background_line_dash"/>
 
     <TextView
         android:id="@+id/txt_description"

@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="@dimen/padding_item_list_wallet"
-            android:background="@drawable/backgtound_line_dash"
+            android:background="@drawable/background_line_dash"
             android:layerType="software"/>
 
         <leduyhung.view.myspinner.MySpinnerView
