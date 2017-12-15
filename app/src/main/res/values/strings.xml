@@ -25,6 +25,7 @@
     <string name="period_month">Chu kì tháng</string>
     <string name="period_year">Chu kì năm</string>
     <string name="day_last_month">Cuối tháng</string>
+    <string name="day">Ngày</string>
     <string name="day_1">Ngày 1</string>
     <string name="day_2">Ngày 2</string>
     <string name="day_3">Ngày 3</string>
@@ -53,6 +54,7 @@
     <string name="day_26">Ngày 26</string>
     <string name="day_27">Ngày 27</string>
     <string name="day_28">Ngày 28</string>
+    <string name="month">Tháng</string>
     <string name="jan">Tháng 1</string>
     <string name="feb">Tháng 2</string>
     <string name="mar">Tháng 3</string>

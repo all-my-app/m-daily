@@ -12,6 +12,9 @@ import java.util.zip.Inflater;
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.helper.NumberConvert;
 import me.leduyhung.mdaily.module.module_view.currency.Currency;
+import me.leduyhung.mdaily.module.module_view.event.EventWallet;
+import me.leduyhung.mdaily.module.module_view.groupwallet.GroupWallet;
+import me.leduyhung.mdaily.module.module_view.period.Period;
 import me.leduyhung.mdaily.module.wallet.Wallet;
 
 /**
@@ -59,23 +62,48 @@ public class WalletDetailAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_GENERAL) {
 
-            ((ItemGeneral)holder).tName.setText(wallet.getName());
-            ((ItemGeneral)holder).tMoney.setText(NumberConvert.newInstance()
+            ((ItemGeneral) holder).tName.setText(wallet.getName());
+            ((ItemGeneral) holder).tMoney.setText(NumberConvert.newInstance()
                     .convertNumberCurrency(wallet.getMoney(),
                             wallet.getCurrency() == Currency.CURRENCY_ID_VND ? mContext.getResources().getString(R.string.vnd) :
                                     mContext.getResources().getString(R.string.usd)));
-            ((ItemGeneral)holder).tGroup.setText(wallet.getGroup() + "");
-//            ((ItemGeneral)holder).tDateCrete.setText(wallet.get);
-            ((ItemGeneral)holder).tDescription.setText(wallet.getDescription());
+            switch (wallet.getGroup()) {
+                case GroupWallet.GROUP_ID_WORK:
+                    ((ItemGeneral) holder).tGroup.setText(mContext.getResources().getString(R.string.group_work));
+                    break;
+                case GroupWallet.GROUP_ID_PERSONAL:
+                    ((ItemGeneral) holder).tGroup.setText(mContext.getResources().getString(R.string.group_personal));
+                    break;
+                case GroupWallet.GROUP_ID_LOVE:
+                    ((ItemGeneral) holder).tGroup.setText(mContext.getResources().getString(R.string.group_love));
+                    break;
+                case GroupWallet.GROUP_ID_SAVING:
+                    ((ItemGeneral) holder).tGroup.setText(mContext.getResources().getString(R.string.group_saving));
+                    break;
+                case GroupWallet.GROUP_ID_TRAVEL:
+                    ((ItemGeneral) holder).tGroup.setText(mContext.getResources().getString(R.string.group_travel));
+                    break;
+                default:
+                    ((ItemGeneral) holder).tGroup.setText(mContext.getResources().getString(R.string.group_work));
+            }
+            ((ItemGeneral) holder).tDescription.setText(wallet.getDescription());
         } else {
 
-            ((ItemEvent)holder).tType.setText(wallet.getPeriodics().get(position - 1).getType() + "");
-            ((ItemEvent)holder).tMoney.setText(NumberConvert
+            switch (wallet.getPeriodics().get(position - 1).getType()) {
+                case EventWallet.EVENT_ID_COLLECTION:
+                    ((ItemEvent) holder).tType.setText(mContext.getResources().getString(R.string.collection));
+                    break;
+                default:
+                    ((ItemEvent) holder).tType.setText(mContext.getResources().getString(R.string.spent));
+            }
+            ((ItemEvent) holder).tMoney.setText(NumberConvert
                     .newInstance().convertNumberCurrency(wallet.getPeriodics().get(position - 1).getMoney_event(),
                             wallet.getCurrency() == Currency.CURRENCY_ID_VND ? mContext.getResources().getString(R.string.vnd) :
-                    mContext.getResources().getString(R.string.usd)));
-            ((ItemEvent)holder).tPeriod.setText(wallet.getPeriodics().get(position - 1).getPeriod() + "");
-            ((ItemEvent)holder).tDescription.setText(wallet.getPeriodics().get(position - 1).getDescription());
+                                    mContext.getResources().getString(R.string.usd)));
+            ((ItemEvent) holder).tPeriod.setText( wallet.getPeriodics().get(position - 1).getPeriod() == Period.PERIOD_ID_MONTH ?
+            mContext.getResources().getString(R.string.day) + " " + wallet.getPeriodics().get(position - 1).getPeriod_day():
+            mContext.getResources().getString(R.string.month) + " " + wallet.getPeriodics().get(position - 1).getPeriod_month());
+            ((ItemEvent) holder).tDescription.setText(wallet.getPeriodics().get(position - 1).getDescription());
         }
     }
 
