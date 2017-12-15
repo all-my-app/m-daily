@@ -31,6 +31,12 @@ public class CalendarUtil {
         return calendar.get(Calendar.YEAR);
     }
 
+    public Date getCurrentDate() {
+
+        calendar = Calendar.getInstance();
+        return calendar.getTime();
+    }
+
     public String convertDateToString(Date date) {
 
         calendar.setTime(date);

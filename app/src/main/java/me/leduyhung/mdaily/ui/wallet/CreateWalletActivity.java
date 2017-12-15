@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.dialog.DialogSelectItem;
+import me.leduyhung.mdaily.helper.CalendarUtil;
 import me.leduyhung.mdaily.module.module_view.createwallet.CreateWallet;
 import me.leduyhung.mdaily.module.module_view.currency.Currency;
 import me.leduyhung.mdaily.module.module_view.event.EventWallet;
@@ -300,6 +301,7 @@ public class CreateWalletActivity extends AppCompatActivity implements View.OnCl
         wallet.setMoney(CreateWallet.newInstance().getItems().get(0).getMoney_in_wallet());
         wallet.setDescription(CreateWallet.newInstance().getItems().get(0).getDescription());
         wallet.setStatistics(null);
+        wallet.setDay_create(CalendarUtil.newInstance().getCurrentDate());
         ArrayList<Periodic> periodics = new ArrayList();
         for (int i  = 1; i < totalItem; i++) {
 

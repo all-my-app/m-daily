@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.zip.Inflater;
 
 import me.leduyhung.mdaily.R;
+import me.leduyhung.mdaily.helper.CalendarUtil;
 import me.leduyhung.mdaily.helper.NumberConvert;
 import me.leduyhung.mdaily.module.module_view.currency.Currency;
 import me.leduyhung.mdaily.module.module_view.event.EventWallet;
@@ -86,6 +87,7 @@ public class WalletDetailAdapter extends RecyclerView.Adapter {
                 default:
                     ((ItemGeneral) holder).tGroup.setText(mContext.getResources().getString(R.string.group_work));
             }
+            ((ItemGeneral) holder).tDateCrete.setText(CalendarUtil.newInstance().convertDateToString(wallet.getDay_create()));
             ((ItemGeneral) holder).tDescription.setText(wallet.getDescription());
         } else {
 

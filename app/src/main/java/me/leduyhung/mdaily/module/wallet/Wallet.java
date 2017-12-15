@@ -2,13 +2,16 @@ package me.leduyhung.mdaily.module.wallet;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import me.leduyhung.mdaily.db.AppDatabase;
 import me.leduyhung.mdaily.db.DbConstant;
+import me.leduyhung.mdaily.db.converter.ConverterDate;
 import me.leduyhung.mdaily.db.converter.ConverterListPeriodic;
 import me.leduyhung.mdaily.db.converter.ConverterListStatistical;
 import me.leduyhung.mdaily.helper.CalendarUtil;
@@ -35,6 +38,8 @@ public class Wallet {
     private int currency;
     private int group;
     private int status;
+    @TypeConverters(ConverterDate.class)
+    private Date day_create;
     @TypeConverters(ConverterListPeriodic.class)
     private ArrayList<Periodic> periodics;
 
@@ -122,5 +127,13 @@ public class Wallet {
     public void createWallet(Context mContext, Wallet wallet) {
 
         AppDatabase.newInstance(mContext).walletDao().insertWallet(wallet);
+    }
+
+    public Date getDay_create() {
+        return day_create;
+    }
+
+    public void setDay_create(Date day_create) {
+        this.day_create = day_create;
     }
 }
