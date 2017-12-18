@@ -50,7 +50,7 @@ dependencies {
     compile 'android.arch.persistence.room:runtime:1.0.0-alpha9'
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha9"
     implementation files('libs/my-logg.jar')
-    compile 'leduyhung.my.view:my-spinner:0.0.2'
+    compile 'leduyhung.my.view:my-spinner:0.0.3'
     compile 'leduyhung.my.view:my-chart:0.0.3'
     compile 'leduyhung.my.view:my-progress:0.0.3'
 }

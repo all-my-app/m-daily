@@ -107,7 +107,7 @@ public class WalletInforFragment extends Fragment implements View.OnClickListene
 
                     configRecycler(wallet);
                 }
-            }, 130);
+            }, 150);
         }
     }
 
