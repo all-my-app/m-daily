@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/action_bar"
-        layout="@layout/layout_actionbar_spinner"
+        layout="@layout/layout_actionbar_simple"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"/>

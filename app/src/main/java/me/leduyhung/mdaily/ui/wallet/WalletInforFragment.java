@@ -75,6 +75,8 @@ public class WalletInforFragment extends Fragment implements View.OnClickListene
         super.onViewCreated(view, savedInstanceState);
 
         tTitle.setText(mContext.getResources().getString(R.string.wallet_infor_title_actionbar));
+        iLeft.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_back));
+        iRight.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_bill));
         iLeft.setOnClickListener(this);
         iRight.setOnClickListener(this);
         AppDatabase.newInstance(mContext).walletDao().getWalletById(idWallet).observeForever(this);
