@@ -2,6 +2,7 @@ package me.leduyhung.mdaily.ui.wallet.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,9 @@ import me.leduyhung.mdaily.module.wallet.Bill;
 
 public class ListPaidWalletAdapter extends RecyclerView.Adapter {
 
+    private final int ITEM_NO_DATA = 1000;
+    private final int ITEM_HAS_DATA = 1001;
+
     private Context mContext;
     private ArrayList<Bill> arrData;
 
@@ -32,30 +36,40 @@ public class ListPaidWalletAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ItemView(LayoutInflater.from(mContext).inflate(R.layout.item_list_paid_wallet, parent, false));
+        if (arrData.size() > 0)
+            return new ItemView(LayoutInflater.from(mContext).inflate(R.layout.item_list_paid_wallet, parent, false));
+        else
+            return new ItemNoData(LayoutInflater.from(mContext).inflate(R.layout.layout_recycler_no_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        ((ItemView)holder).tTime.setText(CalendarUtil.newInstance().convertDateToString(arrData.get(position).getPayDate()));
-        ((ItemView)holder).tMoneyChange.setText(arrData.get(position).getChangeMoney() + "");
-        ((ItemView)holder).tMoneyOld.setText(arrData.get(position).getOldMoney() + "");
-        ((ItemView)holder).tMoneyNew.setText((arrData.get(position).getOldMoney() + arrData.get(position).getChangeMoney()) + "");
-        ((ItemView)holder).tDescription.setText(arrData.get(position).getDescription());
-        if (arrData.get(position).getChangeMoney() >= 0) {
+        if (arrData.size() > 0) {
+            ((ItemView) holder).tTime.setText(CalendarUtil.newInstance().convertDateToString(arrData.get(position).getPayDate()));
+            ((ItemView) holder).tMoneyChange.setText(arrData.get(position).getChangeMoney() + "");
+            ((ItemView) holder).tMoneyOld.setText(arrData.get(position).getOldMoney() + "");
+            ((ItemView) holder).tMoneyNew.setText((arrData.get(position).getOldMoney() + arrData.get(position).getChangeMoney()) + "");
+            ((ItemView) holder).tDescription.setText(arrData.get(position).getDescription());
+            ((ItemView) holder).iShare.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_share));
+            if (arrData.get(position).getChangeMoney() >= 0) {
 
-            ((ItemView)holder).tStatus.setText(mContext.getResources().getString(R.string.collection));
-            ((ItemView)holder).reBarCard.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+                ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.collection));
+                ((ItemView) holder).reBarCard.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
+            } else {
+
+                ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.spent));
+                ((ItemView) holder).reBarCard.setBackgroundColor(mContext.getResources().getColor(R.color.colorRed));
+            }
         } else {
 
-            ((ItemView)holder).tStatus.setText(mContext.getResources().getString(R.string.spent));
-            ((ItemView)holder).reBarCard.setBackgroundColor(mContext.getResources().getColor(R.color.colorRed));
         }
     }
 
     @Override
     public int getItemCount() {
+        if (arrData.size() == 0)
+            return 1;
         return arrData.size();
     }
 
@@ -83,6 +97,13 @@ public class ListPaidWalletAdapter extends RecyclerView.Adapter {
             tMoneyOld = v.findViewById(R.id.txt_money_old);
             tMoneyNew = v.findViewById(R.id.txt_money_new);
             tDescription = v.findViewById(R.id.txt_description);
+        }
+    }
+
+    private static class ItemNoData extends RecyclerView.ViewHolder {
+
+        public ItemNoData(View itemView) {
+            super(itemView);
         }
     }
 }

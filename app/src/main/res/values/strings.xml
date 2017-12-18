@@ -3,7 +3,7 @@
     <string name="facebook_app_id">865603006941334</string>
     <string name="fb_login_protocol_scheme">fb865603006941334</string>
 
-    <string name="spinner_no_data">Không có dữ liệu</string>
+    <string name="no_data">Không có dữ liệu</string>
 
     <!-- GROUP WALLET -->
     <string name="group">Nhóm</string>
