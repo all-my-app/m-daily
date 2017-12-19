@@ -44,62 +44,71 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ItemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_wallet, parent, false));
+        if (arrData.size() > 0)
+            return new ItemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_wallet, parent, false));
+        return new ItemNoData(LayoutInflater.from(mContext).inflate(R.layout.layout_recycler_no_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
-        ((ItemView) holder).tTitle.setText(arrData.get(position).getName());
-        if (arrData.get(position).getStatus() == Wallet.WALLET_STATUS_NO_CHANGE) {
+        if (arrData.size() > 0) {
+            ((ItemView) holder).tTitle.setText(arrData.get(position).getName());
+            if (arrData.get(position).getStatus() == Wallet.WALLET_STATUS_NO_CHANGE) {
 
-            ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.wallet_no_change));
-        } else if (arrData.get(position).getStatus() == Wallet.WALLET_STATUS_INCREASE) {
+                ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.wallet_no_change));
+            } else if (arrData.get(position).getStatus() == Wallet.WALLET_STATUS_INCREASE) {
 
-            ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.wallet_increase));
+                ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.wallet_increase));
+            } else {
+
+                ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.wallet_decrease));
+            }
+
+            switch (arrData.get(position).getGroup()) {
+                case GroupWallet.GROUP_ID_LOVE:
+                    ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_love));
+                    break;
+                case GroupWallet.GROUP_ID_PERSONAL:
+                    ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_personal));
+                    break;
+                case GroupWallet.GROUP_ID_SAVING:
+                    ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_saving));
+                    break;
+                case GroupWallet.GROUP_ID_TRAVEL:
+                    ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_travel));
+                    break;
+                case GroupWallet.GROUP_ID_WORK:
+                    ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_work));
+                    break;
+                default:
+                    ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_love));
+                    break;
+            }
+            ((ItemView) holder).tMoney.setText(NumberConvert
+                    .newInstance().convertNumberCurrency(arrData.get(position).getMoney(),
+                            arrData.get(position).getCurrency() == Currency.CURRENCY_ID_VND ? mContext.getResources().getString(R.string.vnd) :
+                                    mContext.getResources().getString(R.string.usd)));
+            ((ItemView) holder).lItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(mContext, WalletDetailActivity.class);
+                    intent.putExtra(Constant.ListWallet.KEY_INTENT_ID_WALLET, arrData.get(position).getId());
+                    mContext.startActivity(intent);
+                }
+            });
         } else {
 
-            ((ItemView) holder).tStatus.setText(mContext.getResources().getString(R.string.wallet_decrease));
+            return;
         }
-
-        switch (arrData.get(position).getGroup()) {
-            case GroupWallet.GROUP_ID_LOVE:
-                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_love));
-                break;
-            case GroupWallet.GROUP_ID_PERSONAL:
-                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_personal));
-                break;
-            case GroupWallet.GROUP_ID_SAVING:
-                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_saving));
-                break;
-            case GroupWallet.GROUP_ID_TRAVEL:
-                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_travel));
-                break;
-            case GroupWallet.GROUP_ID_WORK:
-                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_work));
-                break;
-            default:
-                ((ItemView) holder).iTitle.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_wallet_love));
-                break;
-        }
-        ((ItemView) holder).tMoney.setText(NumberConvert
-                .newInstance().convertNumberCurrency(arrData.get(position).getMoney(),
-                        arrData.get(position).getCurrency() == Currency.CURRENCY_ID_VND ? mContext.getResources().getString(R.string.vnd) :
-                mContext.getResources().getString(R.string.usd)));
-        ((ItemView) holder).lItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(mContext, WalletDetailActivity.class);
-                intent.putExtra(Constant.ListWallet.KEY_INTENT_ID_WALLET, arrData.get(position).getId());
-                mContext.startActivity(intent);
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return arrData.size();
+        if (arrData.size() > 0)
+            return arrData.size();
+        return 1;
     }
 
     private static class ItemView extends RecyclerView.ViewHolder {
@@ -120,6 +129,12 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
             tMoney = v.findViewById(R.id.txt_money);
             spin = v.findViewById(R.id.mSpin_item);
             chart = v.findViewById(R.id.chartlineview);
+        }
+    }
+
+    private static class ItemNoData extends RecyclerView.ViewHolder {
+        public ItemNoData(View itemView) {
+            super(itemView);
         }
     }
 }
