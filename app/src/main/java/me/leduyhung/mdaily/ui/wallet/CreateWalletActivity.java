@@ -151,7 +151,7 @@ public class CreateWalletActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-        adap.setComboClickListener(new CreateWalletAdapter.CreateWalletAdapterListener() {
+        adap.setAdapterClickListener(new CreateWalletAdapter.CreateWalletAdapterListener() {
             @Override
             public void onComboboxClick(int type_combobox, int position) {
 

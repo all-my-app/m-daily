@@ -521,7 +521,7 @@ public class CreateWalletAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void setComboClickListener(CreateWalletAdapterListener listener) {
+    public void setAdapterClickListener(CreateWalletAdapterListener listener) {
 
         this.listener = listener;
     }

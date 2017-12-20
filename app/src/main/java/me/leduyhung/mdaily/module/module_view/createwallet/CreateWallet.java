@@ -8,26 +8,17 @@ import java.util.ArrayList;
 
 public class CreateWallet {
 
-    private ArrayList<CreateItem> items;
+    private ArrayList<CreateWalletItem> items;
     private static CreateWallet createWallet;
 
     public static CreateWallet newInstance() {
 
-        if (createWallet == null) {
+        if (createWallet == null)
             createWallet = new CreateWallet();
-        }
-
         return createWallet;
     }
 
-    public CreateWallet() {
-    }
-
-    public CreateWallet(ArrayList<CreateItem> items) {
-        this.items = items;
-    }
-
-    public ArrayList<CreateItem> getItems() {
+    public ArrayList<CreateWalletItem> getItems() {
         if (items == null) {
             makeItems();
         }
@@ -36,7 +27,7 @@ public class CreateWallet {
 
     public void addNewItem() {
 
-        items.add(new CreateItem(0, 0, ""));
+        items.add(new CreateWalletItem(0, 0, ""));
     }
 
     public void removeItemByPosition(int position) {
@@ -48,8 +39,8 @@ public class CreateWallet {
     private void makeItems() {
 
         items = new ArrayList();
-        items.add(new CreateItem("", 0, 0, 0, ""));
-        items.add(new CreateItem(0, 0,""));
+        items.add(new CreateWalletItem("", 0, 0, 0, ""));
+        items.add(new CreateWalletItem(0, 0, ""));
     }
 
     public void destroy() {

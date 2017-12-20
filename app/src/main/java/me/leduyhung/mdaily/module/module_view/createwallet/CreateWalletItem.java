@@ -4,7 +4,7 @@ package me.leduyhung.mdaily.module.module_view.createwallet;
  * Created by hungleduy on 11/14/17.
  */
 
-public class CreateItem {
+public class CreateWalletItem {
 
     private String name;
     private int group;
@@ -18,7 +18,7 @@ public class CreateItem {
     private int period_month;
     private String description;
 
-    public CreateItem(String name, int group, long money_in_wallet, int currency, String description) {
+    public CreateWalletItem(String name, int group, long money_in_wallet, int currency, String description) {
         this.name = name;
         this.group = group;
         this.money_in_wallet = money_in_wallet;
@@ -26,7 +26,7 @@ public class CreateItem {
         this.description = description;
     }
 
-    public CreateItem(int type, long money_event, String description) {
+    public CreateWalletItem(int type, long money_event, String description) {
         this.type = type;
         this.money_event = money_event;
         this.description = description;
