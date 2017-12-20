@@ -23,6 +23,6 @@ public interface WalletDao {
     @Query("SELECT * FROM " + DbConstant.TABLE_WALLET + " WHERE id IN (:id)")
     LiveData<Wallet> getWalletById(int id);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.FAIL)
     void insertWallet(Wallet... wallet);
 }

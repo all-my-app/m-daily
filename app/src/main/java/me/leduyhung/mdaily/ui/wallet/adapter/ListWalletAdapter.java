@@ -33,6 +33,9 @@ import me.leduyhung.mdaily.ui.wallet.WalletDetailActivity;
 
 public class ListWalletAdapter extends RecyclerView.Adapter {
 
+    private final int TYPE_NO_ITEM = 10000;
+    private final int TYPE_ITEM = 10001;
+
     private Context mContext;
     private ArrayList<Wallet> arrData;
 
@@ -43,8 +46,16 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
     }
 
     @Override
+    public int getItemViewType(int position) {
+
+        if (arrData.size() == 0)
+            return TYPE_NO_ITEM;
+        return TYPE_ITEM;
+    }
+
+    @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (arrData.size() > 0)
+        if (viewType == TYPE_ITEM)
             return new ItemView(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_wallet, parent, false));
         return new ItemNoData(LayoutInflater.from(mContext).inflate(R.layout.layout_recycler_no_item, parent, false));
     }
@@ -52,7 +63,7 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
-        if (arrData.size() > 0) {
+        if (holder instanceof ItemView && arrData.size() > 0) {
             ((ItemView) holder).tTitle.setText(arrData.get(position).getName());
             if (arrData.get(position).getStatus() == Wallet.WALLET_STATUS_NO_CHANGE) {
 

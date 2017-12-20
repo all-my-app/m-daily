@@ -2,6 +2,7 @@ package me.leduyhung.mdaily.ui.wallet;
 
 import android.arch.lifecycle.Observer;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -86,6 +87,7 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
         tTitle.setText(mContext.getResources().getString(R.string.wallet_paid_title_actionbar));
         iLeft.setOnClickListener(this);
         iRight.setOnClickListener(this);
+        bAdd.setOnClickListener(this);
         configRecycler();
     }
 
@@ -99,6 +101,11 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
                 break;
             case R.id.img_right:
                 UiObserver.newInstance().notify(ObserverTag.TAG_ICON_RIGHT_ACTION_BAR_CLICK);
+                break;
+            case R.id.btn_add:
+                Intent i = new Intent(mContext, CreatePaidWalletActivity.class);
+                i.putExtra(Constant.ListWallet.KEY_INTENT_ID_WALLET, idWallet);
+                startActivity(i);
                 break;
         }
     }

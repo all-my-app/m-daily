@@ -2,6 +2,8 @@ package me.leduyhung.mdaily.ui.wallet.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,9 @@ public class CreatePaidWalletAdapter extends RecyclerView.Adapter {
 
     private final int TYPE_ITEM = 111;
     private final int TYPE_ADD = 112;
+
+    public static final int TYPE_COMBOBOX_TYPE = 1;
+    public static final int TYPE_COMBOBOX_CURRENCY = 2;
 
     private Context mContext;
 
@@ -46,12 +51,45 @@ public class CreatePaidWalletAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         if (holder instanceof ItemView) {
 
+            ((ItemView)holder).eMoney.setTag(position);
+            ((ItemView)holder).eDescription.setTag(position);
+            ((ItemView) holder).eMoney.setText(CreatePaidWallet.newInstance().getItems().get(position).getMoney_event() == 0 ? "" :
+                    CreatePaidWallet.newInstance().getItems().get(position).getMoney_event() + "");
+            ((ItemView) holder).eDescription.setText(CreatePaidWallet.newInstance().getItems().get(position).getDescription() + "");
+            ((ItemView)holder).iRemove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    removeItem(position);
+                }
+            });
+            ((ItemView)holder).rType.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    listener.onComboboxClick(TYPE_COMBOBOX_TYPE, position);
+                }
+            });
+            ((ItemView)holder).rCurrency.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    listener.onComboboxClick(TYPE_COMBOBOX_CURRENCY, position);
+                }
+            });
         } else {
 
+            ((ItemAdd) holder).iAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    addNewItem();
+                }
+            });
         }
     }
 
@@ -61,11 +99,11 @@ public class CreatePaidWalletAdapter extends RecyclerView.Adapter {
         return CreatePaidWallet.newInstance().getItems().size() + 1;
     }
 
-    private static class ItemView extends RecyclerView.ViewHolder {
+    private class ItemView extends RecyclerView.ViewHolder {
 
         private TextView tDate;
         private ImageView iRemove;
-        private EditText etxtMoney, etxtDescription;
+        private EditText eMoney, eDescription;
         private RelativeLayout rType, rCurrency;
 
         public ItemView(View itemView) {
@@ -73,14 +111,20 @@ public class CreatePaidWalletAdapter extends RecyclerView.Adapter {
 
             tDate = itemView.findViewById(R.id.txt_date_create);
             iRemove = itemView.findViewById(R.id.img_remove);
-            etxtMoney = itemView.findViewById(R.id.etxt_money_event);
-            etxtDescription = itemView.findViewById(R.id.etxt_description);
+            eMoney = itemView.findViewById(R.id.etxt_money_event);
+            eDescription = itemView.findViewById(R.id.etxt_description);
             rType = itemView.findViewById(R.id.relative_type);
             rCurrency = itemView.findViewById(R.id.relative_currency);
+
+            MonneyTextWatcher monneyTextWatcher = new MonneyTextWatcher(eMoney);
+            eMoney.addTextChangedListener(monneyTextWatcher);
+
+            DescriptionTextWatcher descriptionTextWatcher = new DescriptionTextWatcher(eDescription);
+            eDescription.addTextChangedListener(descriptionTextWatcher);
         }
     }
 
-    private static class ItemAdd extends RecyclerView.ViewHolder {
+    private class ItemAdd extends RecyclerView.ViewHolder {
 
         private ImageView iAdd;
 
@@ -91,11 +135,88 @@ public class CreatePaidWalletAdapter extends RecyclerView.Adapter {
         }
     }
 
+    private class MonneyTextWatcher implements TextWatcher {
+
+        private int position;
+        private EditText e;
+
+        public MonneyTextWatcher(EditText editText) {
+
+            e = editText;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            position = (int) e.getTag();
+            if (CreatePaidWallet.newInstance().getItems().size() > position) {
+                if (charSequence.toString().length() >= 1)
+                    CreatePaidWallet.newInstance().getItems().get(position).setMoney_event(Long.parseLong(charSequence.toString()));
+                else
+                    CreatePaidWallet.newInstance().getItems().get(position).setMoney_event(0);
+            } else {
+
+                return;
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    }
+
+    private class DescriptionTextWatcher implements TextWatcher {
+
+        private int position;
+        private EditText e;
+
+        public DescriptionTextWatcher(EditText editText) {
+
+            e = editText;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            position = (int) e.getTag();
+            if (CreatePaidWallet.newInstance().getItems().size() > position) {
+                CreatePaidWallet.newInstance().getItems().get(position).setDescription(charSequence.toString());
+            } else {
+
+                return;
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    }
+
     private void addNewItem() {
 
         CreatePaidWallet.newInstance().addNewItem();
         notifyItemInserted(CreatePaidWallet.newInstance().getItems().size());
         listener.onAddItem(getItemCount());
+    }
+
+    private void removeItem(int position) {
+
+        CreatePaidWallet.newInstance().removeItemByPosition(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, getItemCount() - 1);
+        listener.onRemoveItem(position, getItemCount());
     }
 
     public void setAdapterClickListener(CreatePaidWalletAdapterListener listener) {

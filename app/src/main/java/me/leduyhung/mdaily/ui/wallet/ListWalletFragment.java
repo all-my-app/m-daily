@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.leduyhung.loglibrary.Logg;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +44,12 @@ public class ListWalletFragment extends Fragment implements View.OnClickListener
     private ListWalletAdapter adap;
 
     private ArrayList<Wallet> arrData;
+    private boolean needRemoveNoItem, firstLoad;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        firstLoad = true;
     }
 
     @Override
@@ -123,20 +127,32 @@ public class ListWalletFragment extends Fragment implements View.OnClickListener
     @Override
     public void onChanged(@Nullable final List<Wallet> wallets) {
 
-        arrData.clear();
-        arrData.addAll(wallets);
-        if (wallets.size() > 0)
+        Logg.error(getClass(), "wallet total: " + wallets.size());
+        if (wallets.size() > 0) {
+            arrData.clear();
+            arrData.addAll(wallets);
             ((Activity) mContext).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (wallets.size() > adap.getItemCount())
-                        adap.notifyItemInserted(wallets.size());
-                    else
-                        adap.notifyDataSetChanged();
-                    recycler.smoothScrollToPosition(wallets.size() - 1);
+
+                    if (needRemoveNoItem) {
+                        adap.notifyItemChanged(0);
+                    } else {
+                        if (!firstLoad) {
+                            adap.notifyItemInserted(wallets.size() - 1);
+                            recycler.smoothScrollToPosition(wallets.size() - 1);
+                        } else {
+                            adap.notifyDataSetChanged();
+                            firstLoad = false;
+                        }
+                    }
+                    needRemoveNoItem = false;
                 }
             });
+        } else {
 
+            needRemoveNoItem = true;
+        }
     }
 
     private void configRecycler() {
@@ -144,6 +160,7 @@ public class ListWalletFragment extends Fragment implements View.OnClickListener
         arrData = new ArrayList();
         adap = new ListWalletAdapter(mContext, arrData);
         LinearLayoutManager manager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        manager.setAutoMeasureEnabled(false);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(manager);
         recycler.setAdapter(adap);

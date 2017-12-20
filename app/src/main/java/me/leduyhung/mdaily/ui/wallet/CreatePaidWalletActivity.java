@@ -2,6 +2,7 @@ package me.leduyhung.mdaily.ui.wallet;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import me.leduyhung.mdaily.module.module_view.groupwallet.GroupWallet;
 import me.leduyhung.mdaily.module.module_view.period.Period;
 import me.leduyhung.mdaily.module.module_view.period_day.PeriodDay;
 import me.leduyhung.mdaily.module.module_view.period_month.PeriodMonth;
+import me.leduyhung.mdaily.ui.wallet.adapter.CreatePaidWalletAdapter;
 
 public class CreatePaidWalletActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -25,6 +27,8 @@ public class CreatePaidWalletActivity extends AppCompatActivity implements View.
     private ImageView iLeft, iRight;
     private TextView tTitle;
     private RecyclerView recycler;
+
+    private CreatePaidWalletAdapter adap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,7 @@ public class CreatePaidWalletActivity extends AppCompatActivity implements View.
         tTitle = findViewById(R.id.txt_title);
         recycler = findViewById(R.id.recycler);
         configActionBar();
+        configRecycler();
     }
 
     private void configActionBar() {
@@ -61,6 +66,15 @@ public class CreatePaidWalletActivity extends AppCompatActivity implements View.
         iLeft.setOnClickListener(this);
         iRight.setOnClickListener(this);
         initDataCombo();
+    }
+
+    private void configRecycler() {
+
+        adap = new CreatePaidWalletAdapter(this);
+        LinearLayoutManager manager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recycler.setHasFixedSize(true);
+        recycler.setLayoutManager(manager);
+        recycler.setAdapter(adap);
     }
 
     private void initDataCombo() {

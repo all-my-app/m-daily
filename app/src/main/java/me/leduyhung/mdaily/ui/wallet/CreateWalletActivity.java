@@ -292,28 +292,30 @@ public class CreateWalletActivity extends AppCompatActivity implements View.OnCl
 
     private void createWallet() {
 
-        Wallet wallet = new Wallet();
-        int totalItem = CreateWallet.newInstance().getItems().size();
-        wallet.setId(totalWallet);
-        wallet.setName(CreateWallet.newInstance().getItems().get(0).getName());
-        wallet.setCurrency(CreateWallet.newInstance().getItems().get(0).getCurrency());
-        wallet.setGroup(CreateWallet.newInstance().getItems().get(0).getGroup());
-        wallet.setMoney(CreateWallet.newInstance().getItems().get(0).getMoney_in_wallet());
-        wallet.setDescription(CreateWallet.newInstance().getItems().get(0).getDescription());
-        wallet.setStatistics(null);
-        wallet.setDay_create(CalendarUtil.newInstance().getCurrentDate());
-        ArrayList<Periodic> periodics = new ArrayList();
-        for (int i  = 1; i < totalItem; i++) {
+        if (CreateWallet.newInstance().getItems().get(0).getName() != null && CreateWallet.newInstance().getItems().get(0).getName() != "" || 1 == 1) {
+            Wallet wallet = new Wallet();
+            int totalItem = CreateWallet.newInstance().getItems().size();
+            wallet.setId(totalWallet + 1);
+            wallet.setName(CreateWallet.newInstance().getItems().get(0).getName());
+            wallet.setCurrency(CreateWallet.newInstance().getItems().get(0).getCurrency());
+            wallet.setGroup(CreateWallet.newInstance().getItems().get(0).getGroup());
+            wallet.setMoney(CreateWallet.newInstance().getItems().get(0).getMoney_in_wallet());
+            wallet.setDescription(CreateWallet.newInstance().getItems().get(0).getDescription());
+            wallet.setStatistics(null);
+            wallet.setDay_create(CalendarUtil.newInstance().getCurrentDate());
+            ArrayList<Periodic> periodics = new ArrayList();
+            for (int i = 1; i < totalItem; i++) {
 
-            periodics.add(new Periodic(CreateWallet.newInstance().getItems().get(i).getType(),
-                    CreateWallet.newInstance().getItems().get(i).getMoney_event(),
-                    CreateWallet.newInstance().getItems().get(i).getPeriod(),
-                    CreateWallet.newInstance().getItems().get(i).getPeriod_day(),
-                    CreateWallet.newInstance().getItems().get(i).getPeriod_month(),
-                    CreateWallet.newInstance().getItems().get(i).getDescription()));
+                periodics.add(new Periodic(CreateWallet.newInstance().getItems().get(i).getType(),
+                        CreateWallet.newInstance().getItems().get(i).getMoney_event(),
+                        CreateWallet.newInstance().getItems().get(i).getPeriod(),
+                        CreateWallet.newInstance().getItems().get(i).getPeriod_day(),
+                        CreateWallet.newInstance().getItems().get(i).getPeriod_month(),
+                        CreateWallet.newInstance().getItems().get(i).getDescription()));
+            }
+            wallet.setPeriodics(periodics);
+            wallet.createWallet(this, wallet);
+            finish();
         }
-        wallet.setPeriodics(periodics);
-        wallet.createWallet(this, wallet);
-        finish();
     }
 }
