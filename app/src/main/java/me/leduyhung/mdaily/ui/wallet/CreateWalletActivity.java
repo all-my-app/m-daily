@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.leduyhung.loglibrary.Logg;
 
@@ -46,7 +47,7 @@ public class CreateWalletActivity extends AppCompatActivity implements View.OnCl
     private PeriodDay periodDay;
     private PeriodMonth periodMonth;
     private int stateBottomView;
-    private int totalWallet;
+    private int idWallet, totalWallet;
 
     @Override
     protected void onStart() {
@@ -60,6 +61,7 @@ public class CreateWalletActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_wallet);
         initView();
+        idWallet = getIntent().getIntExtra(Constant.ListWallet.KEY_INTENT_ID_NEXT_WALLET, 0);
         totalWallet = getIntent().getIntExtra(Constant.ListWallet.KEY_INTENT_TOTAL_WALLET, 0);
     }
 
@@ -73,7 +75,10 @@ public class CreateWalletActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.txt_create:
 
-                createWallet();
+                if (totalWallet <= 100)
+                    createWallet();
+                else
+                    Toast.makeText(this, getResources().getString(R.string.message_wallet_limmit), Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -292,10 +297,11 @@ public class CreateWalletActivity extends AppCompatActivity implements View.OnCl
 
     private void createWallet() {
 
-        if (CreateWallet.newInstance().getItems().get(0).getName() != null && CreateWallet.newInstance().getItems().get(0).getName() != "" || 1 == 1) {
+        if (CreateWallet.newInstance().getItems().get(0).getName() != null && CreateWallet.newInstance().getItems().get(0).getName() != "" &&
+                CreateWallet.newInstance().getItems().get(0).getCurrency() > 0 && CreateWallet.newInstance().getItems().get(0).getGroup() > 0) {
             Wallet wallet = new Wallet();
             int totalItem = CreateWallet.newInstance().getItems().size();
-            wallet.setId(totalWallet + 1);
+            wallet.setId(idWallet);
             wallet.setName(CreateWallet.newInstance().getItems().get(0).getName());
             wallet.setCurrency(CreateWallet.newInstance().getItems().get(0).getCurrency());
             wallet.setGroup(CreateWallet.newInstance().getItems().get(0).getGroup());
@@ -306,16 +312,24 @@ public class CreateWalletActivity extends AppCompatActivity implements View.OnCl
             ArrayList<Periodic> periodics = new ArrayList();
             for (int i = 1; i < totalItem; i++) {
 
-                periodics.add(new Periodic(CreateWallet.newInstance().getItems().get(i).getType(),
-                        CreateWallet.newInstance().getItems().get(i).getMoney_event(),
-                        CreateWallet.newInstance().getItems().get(i).getPeriod(),
-                        CreateWallet.newInstance().getItems().get(i).getPeriod_day(),
-                        CreateWallet.newInstance().getItems().get(i).getPeriod_month(),
-                        CreateWallet.newInstance().getItems().get(i).getDescription()));
+                if (CreateWallet.newInstance().getItems().get(i).getType() > 0) {
+                    periodics.add(new Periodic(CreateWallet.newInstance().getItems().get(i).getType(),
+                            CreateWallet.newInstance().getItems().get(i).getMoney_event(),
+                            CreateWallet.newInstance().getItems().get(i).getPeriod(),
+                            CreateWallet.newInstance().getItems().get(i).getPeriod_day(),
+                            CreateWallet.newInstance().getItems().get(i).getPeriod_month(),
+                            CreateWallet.newInstance().getItems().get(i).getDescription()));
+                } else {
+                    Toast.makeText(this, getResources().getString(R.string.message_complete_input_create_wallet), Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
             wallet.setPeriodics(periodics);
             wallet.createWallet(this, wallet);
             finish();
+        } else {
+
+            Toast.makeText(this, getResources().getString(R.string.message_complete_input_create_wallet), Toast.LENGTH_SHORT).show();
         }
     }
 }

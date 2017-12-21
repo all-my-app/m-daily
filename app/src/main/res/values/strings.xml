@@ -99,6 +99,8 @@
     <string name="money_in_wallet">Số tiền trong ví</string>
     <string name="money">Số tiền</string>
     <string name="content_event">Nội dung sự kiện</string>
+    <string name="message_wallet_limmit">Số lượng ví của bạn đã tới giới hạn</string>
+    <string name="message_complete_input_create_wallet">Thông tin của ví không được để trống</string>
 
     <!-- CREATE PAID WALLET -->
     <string name="no_description">Không có mô tả nào</string>

@@ -94,7 +94,7 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
     @Override
     public void onDetach() {
         super.onDetach();
-        
+
         AppDatabase.newInstance(mContext).walletDao().getWalletById(idWallet).removeObserver(this);
     }
 

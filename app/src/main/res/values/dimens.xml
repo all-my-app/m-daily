@@ -12,6 +12,9 @@
     <dimen name="width_height_icon_action_bar">40dp</dimen>
     <dimen name="padding_icon_action_bar">5dp</dimen>
 
+    <!-- LOADING CIRCLE SIZE -->
+    <dimen name="loading_circle_radius_normal">25dp</dimen>
+
     <!-- ACTION BAR SPINNER -->
     <dimen name="width_spinner_actionbar">300dp</dimen>
     <dimen name="height_spinner_actionbar">50dp</dimen>

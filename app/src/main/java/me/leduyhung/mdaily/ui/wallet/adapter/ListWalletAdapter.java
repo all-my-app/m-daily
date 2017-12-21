@@ -48,9 +48,14 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemViewType(int position) {
 
-        if (arrData.size() == 0)
+        if (arrData.get(position) == null)
             return TYPE_NO_ITEM;
         return TYPE_ITEM;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
     }
 
     @Override
@@ -117,12 +122,10 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        if (arrData.size() > 0)
-            return arrData.size();
-        return 1;
+        return arrData.size();
     }
 
-    private static class ItemView extends RecyclerView.ViewHolder {
+    private class ItemView extends RecyclerView.ViewHolder {
 
         private LinearLayout lItem;
         private ImageView iTitle, iMenu;
@@ -143,7 +146,7 @@ public class ListWalletAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private static class ItemNoData extends RecyclerView.ViewHolder {
+    private class ItemNoData extends RecyclerView.ViewHolder {
         public ItemNoData(View itemView) {
             super(itemView);
         }
