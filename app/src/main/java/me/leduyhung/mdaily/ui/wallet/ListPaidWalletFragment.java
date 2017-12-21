@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ import com.leduyhung.loglibrary.Logg;
 
 import java.util.ArrayList;
 
+import leduyhung.view.myprogress.loading.circle.LoadingCircleView;
 import leduyhung.view.myspinner.MySpinnerView;
 import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
@@ -36,17 +39,21 @@ import me.leduyhung.mdaily.ui.wallet.adapter.ListPaidWalletAdapter;
 
 public class ListPaidWalletFragment extends Fragment implements View.OnClickListener, Observer<Wallet> {
 
+    private Handler handConfigRecycler;
+
     private Context mContext;
     private View v;
     private ImageView iLeft, iRight;
     private TextView tTitle;
     private MySpinnerView spiner;
     private FloatingActionButton bAdd;
+    private LoadingCircleView loadingCircle;
     private RecyclerView recycler;
     private ListPaidWalletAdapter adap;
 
-    private ArrayList<Statistical> arrData;
+    private ArrayList<Bill> arrData;
     private int idWallet;
+    private boolean fragmentHasCreate;
 
     @Override
     public void onAttach(Context context) {
@@ -60,6 +67,8 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
         super.onCreate(savedInstanceState);
 
         idWallet = getArguments().getInt(Constant.ListWallet.KEY_BUNDLE_ID_WALLET);
+        handConfigRecycler = new Handler();
+        fragmentHasCreate = false;
     }
 
     @Override
@@ -77,6 +86,7 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
         spiner = v.findViewById(R.id.spinner_actionbar);
         bAdd = v.findViewById(R.id.btn_add);
         recycler = v.findViewById(R.id.recycler);
+        loadingCircle = v.findViewById(R.id.loading_circle);
         return v;
     }
 
@@ -88,6 +98,9 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
         iLeft.setOnClickListener(this);
         iRight.setOnClickListener(this);
         bAdd.setOnClickListener(this);
+        if (!fragmentHasCreate)
+            loadingCircle.showLoading(true);
+        fragmentHasCreate = true;
         configRecycler();
     }
 
@@ -95,6 +108,12 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
     public void onDetach() {
         super.onDetach();
 
+        AppDatabase.newInstance(mContext).walletDao().getWalletById(idWallet).removeObserver(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
         AppDatabase.newInstance(mContext).walletDao().getWalletById(idWallet).removeObserver(this);
     }
 
@@ -118,22 +137,41 @@ public class ListPaidWalletFragment extends Fragment implements View.OnClickList
     }
 
     @Override
-    public void onChanged(@Nullable Wallet wallet) {
+    public void onChanged(@Nullable final Wallet wallet) {
 
         Logg.error(getClass(), wallet.getName() + "  --->");
-        if (wallet.getStatistics() != null) {
-            arrData.clear();
-            arrData.addAll(wallet.getStatistics());
-            if (arrData.size() > 0) {
-                adap.updateListPaid(arrData.get(0).getBills());
+        handConfigRecycler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingCircle.showLoading(false);
+                if (wallet.getStatistics() != null && wallet.getStatistics().size() > 0) {
+
+                    if (wallet.getStatistics().get(0).getBills() != null && wallet.getStatistics().get(0).getBills().size() > 0) {
+
+                        arrData.clear();
+                        arrData.addAll(wallet.getStatistics().get(0).getBills());
+                        adap.notifyDataSetChanged();
+                    } else {
+
+                        arrData.clear();
+                        arrData.add(null);
+                        adap.notifyItemInserted(0);
+                    }
+                } else {
+
+                    arrData.clear();
+                    arrData.add(null);
+                    adap.notifyItemInserted(0);
+                }
             }
-        }
+        }, 150);
     }
 
     private void configRecycler() {
 
         arrData = new ArrayList<>();
-        adap = new ListPaidWalletAdapter(mContext, new ArrayList<Bill>());
+        adap = new ListPaidWalletAdapter(mContext, arrData);
         LinearLayoutManager manager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(manager);

@@ -56,6 +56,7 @@ public class WalletInforFragment extends Fragment implements View.OnClickListene
         super.onCreate(savedInstanceState);
 
         idWallet = getArguments().getInt(Constant.ListWallet.KEY_BUNDLE_ID_WALLET);
+        handConfigRecycler = new Handler();
     }
 
     @Override
@@ -100,7 +101,6 @@ public class WalletInforFragment extends Fragment implements View.OnClickListene
     public void onChanged(@Nullable final Wallet wallet) {
 
         if (wallet != null) {
-            handConfigRecycler = new Handler();
             handConfigRecycler.postDelayed(new Runnable() {
                 @Override
                 public void run() {

@@ -19,6 +19,15 @@
         android:background="@color/color_bg_gray"
         android:layout_below="@+id/action_bar"/>
 
+    <leduyhung.view.myprogress.loading.circle.LoadingCircleView
+        android:id="@+id/loading_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:loading_circle_radius="@dimen/loading_circle_radius_normal"
+        app:loading_circle_border_size="2dp"
+        app:loading_circle_border_color="@color/colorAccent"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"

@@ -17,20 +17,26 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/action_bar"/>
+            android:layout_below="@+id/action_bar">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="me.leduyhung.mdaily.behaviors.ScrollEffctRecycler"/>
+        </android.support.design.widget.CoordinatorLayout>
 
         <leduyhung.view.myprogress.loading.circle.LoadingCircleView
             android:id="@+id/loading_circle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            app:loading_circle_radius="@dimen/loading_circle_radius_normal"
             app:loading_circle_border_color="@color/colorAccent"
-            app:loading_circle_border_size="2dp"/>
+            app:loading_circle_border_size="2dp"
+            app:loading_circle_radius="@dimen/loading_circle_radius_normal"/>
 
         <View
             android:layout_width="match_parent"

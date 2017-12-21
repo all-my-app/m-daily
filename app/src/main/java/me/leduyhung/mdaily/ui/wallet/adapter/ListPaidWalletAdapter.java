@@ -35,17 +35,23 @@ public class ListPaidWalletAdapter extends RecyclerView.Adapter {
     }
 
     @Override
+    public int getItemViewType(int position) {
+        if (arrData.get(position) == null)
+            return ITEM_NO_DATA;
+        return ITEM_HAS_DATA;
+    }
+
+    @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (arrData.size() > 0)
+        if (viewType == ITEM_HAS_DATA)
             return new ItemView(LayoutInflater.from(mContext).inflate(R.layout.item_list_paid_wallet, parent, false));
-        else
-            return new ItemNoData(LayoutInflater.from(mContext).inflate(R.layout.layout_recycler_no_item, parent, false));
+        return new ItemNoData(LayoutInflater.from(mContext).inflate(R.layout.layout_recycler_no_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        if (arrData.size() > 0) {
+        if (holder instanceof ItemView) {
             ((ItemView) holder).tTime.setText(CalendarUtil.newInstance().convertDateToString(arrData.get(position).getPayDate()));
             ((ItemView) holder).tMoneyChange.setText(arrData.get(position).getChangeMoney() + "");
             ((ItemView) holder).tMoneyOld.setText(arrData.get(position).getOldMoney() + "");
@@ -63,13 +69,13 @@ public class ListPaidWalletAdapter extends RecyclerView.Adapter {
             }
         } else {
 
+            return;
         }
     }
 
     @Override
     public int getItemCount() {
-        if (arrData.size() == 0)
-            return 1;
+
         return arrData.size();
     }
 
