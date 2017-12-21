@@ -41,10 +41,13 @@ public class WalletDetailAdapter extends RecyclerView.Adapter {
         if (position == 0) {
 
             return TYPE_GENERAL;
-        } else {
-
-            return TYPE_EVENT;
         }
+        return TYPE_EVENT;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
     }
 
     @Override
@@ -53,10 +56,8 @@ public class WalletDetailAdapter extends RecyclerView.Adapter {
         if (viewType == TYPE_GENERAL) {
 
             return new ItemGeneral(LayoutInflater.from(mContext).inflate(R.layout.item_wallet_infor_general, parent, false));
-        } else {
-
-            return new ItemEvent(LayoutInflater.from(mContext).inflate(R.layout.item_wallet_infor_event, parent, false));
         }
+        return new ItemEvent(LayoutInflater.from(mContext).inflate(R.layout.item_wallet_infor_event, parent, false));
     }
 
     @Override
@@ -102,23 +103,32 @@ public class WalletDetailAdapter extends RecyclerView.Adapter {
                     .newInstance().convertNumberCurrency(wallet.getPeriodics().get(position - 1).getMoney_event(),
                             wallet.getCurrency() == Currency.CURRENCY_ID_VND ? mContext.getResources().getString(R.string.vnd) :
                                     mContext.getResources().getString(R.string.usd)));
-            ((ItemEvent) holder).tPeriod.setText( wallet.getPeriodics().get(position - 1).getPeriod() == Period.PERIOD_ID_MONTH ?
-            mContext.getResources().getString(R.string.day) + " " + wallet.getPeriodics().get(position - 1).getPeriod_day():
-            mContext.getResources().getString(R.string.month) + " " + wallet.getPeriodics().get(position - 1).getPeriod_month());
+            ((ItemEvent) holder).tPeriod.setText(wallet.getPeriodics().get(position - 1).getPeriod() == Period.PERIOD_ID_MONTH ?
+                    mContext.getResources().getString(R.string.day) + " " + wallet.getPeriodics().get(position - 1).getPeriod_day() :
+                    mContext.getResources().getString(R.string.month) + " " + wallet.getPeriodics().get(position - 1).getPeriod_month());
             ((ItemEvent) holder).tDescription.setText(wallet.getPeriodics().get(position - 1).getDescription());
         }
     }
 
     @Override
     public int getItemCount() {
-        if (wallet != null && wallet.getPeriodics() != null) {
+        if (wallet != null) {
 
-            return wallet.getPeriodics().size() + 1;
+            if (wallet.getPeriodics() != null)
+                return wallet.getPeriodics().size() + 1;
+            else
+                return 1;
         } else
-            return 1;
+            return 0;
     }
 
-    private static class ItemGeneral extends RecyclerView.ViewHolder {
+    public void updateData(Wallet wallet) {
+
+        this.wallet = wallet;
+        notifyDataSetChanged();
+    }
+
+    private class ItemGeneral extends RecyclerView.ViewHolder {
 
         private TextView tName, tGroup, tMoney, tDateCrete, tDescription;
 
@@ -132,7 +142,7 @@ public class WalletDetailAdapter extends RecyclerView.Adapter {
         }
     }
 
-    private static class ItemEvent extends RecyclerView.ViewHolder {
+    private class ItemEvent extends RecyclerView.ViewHolder {
 
         private TextView tType, tMoney, tPeriod, tDescription;
 

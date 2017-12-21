@@ -33,7 +33,6 @@ public class ScrollEffctRecycler extends CoordinatorLayout.Behavior<View>{
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, View child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
 
-        Logg.error(getClass(), " ----- > " + dyUnconsumed);
         if (dyUnconsumed == 0) {
             return;
         }

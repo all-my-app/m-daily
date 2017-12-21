@@ -80,7 +80,7 @@ public class WalletInforFragment extends Fragment implements View.OnClickListene
         iRight.setImageDrawable(mContext.getResources().getDrawable(R.drawable.ic_bill));
         iLeft.setOnClickListener(this);
         iRight.setOnClickListener(this);
-        AppDatabase.newInstance(mContext).walletDao().getWalletById(idWallet).observeForever(this);
+        configRecycler();
     }
 
     @Override
@@ -105,18 +105,21 @@ public class WalletInforFragment extends Fragment implements View.OnClickListene
                 @Override
                 public void run() {
 
-                    configRecycler(wallet);
+                    adap.updateData(wallet);
                 }
             }, 150);
         }
     }
 
-    private void configRecycler(Wallet wallet) {
+    private void configRecycler() {
 
-        adap = new WalletDetailAdapter(mContext, wallet);
+        adap = new WalletDetailAdapter(mContext, null);
         LinearLayoutManager manager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        manager.setAutoMeasureEnabled(false);
+        adap.setHasStableIds(true);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(manager);
         recycler.setAdapter(adap);
+        AppDatabase.newInstance(mContext).walletDao().getWalletById(idWallet).observeForever(this);
     }
 }
