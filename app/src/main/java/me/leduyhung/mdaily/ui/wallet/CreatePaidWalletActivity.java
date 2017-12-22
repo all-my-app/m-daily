@@ -12,10 +12,6 @@ import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.module.module_view.currency.Currency;
 import me.leduyhung.mdaily.module.module_view.event.EventWallet;
-import me.leduyhung.mdaily.module.module_view.groupwallet.GroupWallet;
-import me.leduyhung.mdaily.module.module_view.period.Period;
-import me.leduyhung.mdaily.module.module_view.period_day.PeriodDay;
-import me.leduyhung.mdaily.module.module_view.period_month.PeriodMonth;
 import me.leduyhung.mdaily.ui.wallet.adapter.CreatePaidWalletAdapter;
 
 public class CreatePaidWalletActivity extends AppCompatActivity implements View.OnClickListener{
