@@ -18,11 +18,17 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/action_bar"/>
+            android:layout_below="@+id/action_bar">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="me.leduyhung.mdaily.behaviors.ScrollEffctRecycler"/>
+        </android.support.design.widget.CoordinatorLayout>
 
         <View
             android:layout_width="match_parent"

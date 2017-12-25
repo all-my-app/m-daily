@@ -14,7 +14,6 @@ import me.leduyhung.mdaily.Constant;
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.dialog.DialogSelectItem;
 import me.leduyhung.mdaily.module.module_view.createpaidwallet.CreatePaidWallet;
-import me.leduyhung.mdaily.module.module_view.createwallet.CreateWallet;
 import me.leduyhung.mdaily.module.module_view.currency.Currency;
 import me.leduyhung.mdaily.module.module_view.event.EventWallet;
 import me.leduyhung.mdaily.ui.wallet.adapter.CreatePaidWalletAdapter;
