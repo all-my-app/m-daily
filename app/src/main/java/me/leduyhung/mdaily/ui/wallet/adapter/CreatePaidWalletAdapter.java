@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import me.leduyhung.mdaily.R;
 import me.leduyhung.mdaily.module.module_view.createpaidwallet.CreatePaidWallet;
+import me.leduyhung.mdaily.module.module_view.currency.Currency;
+import me.leduyhung.mdaily.module.module_view.event.EventWallet;
 
 /**
  * Created by hungleduy on 12/19/17.
@@ -55,6 +57,29 @@ public class CreatePaidWalletAdapter extends RecyclerView.Adapter {
 
         if (holder instanceof ItemView) {
 
+            switch (CreatePaidWallet.newInstance().getItems().get(position).getCurrency()) {
+                case Currency.CURRENCY_ID_VND:
+                    ((ItemView) holder).tComboCurrency.setText(mContext.getResources().getString(R.string.vnd));
+                    break;
+                case Currency.CURRENCY_ID_USD:
+                    ((ItemView) holder).tComboCurrency.setText(mContext.getResources().getString(R.string.usd));
+                    break;
+                default:
+                    ((ItemView) holder).tComboCurrency.setText(mContext.getResources().getString(R.string.currency));
+                    break;
+            }
+            switch (CreatePaidWallet.newInstance().getItems().get(position).getType()) {
+
+                case EventWallet.EVENT_ID_COLLECTION:
+                    ((ItemView) holder).tComboType.setText(mContext.getResources().getString(R.string.collection));
+                    break;
+                case EventWallet.EVENT_ID_SPENT:
+                    ((ItemView) holder).tComboType.setText(mContext.getResources().getString(R.string.spent));
+                    break;
+                default:
+                    ((ItemView) holder).tComboType.setText(mContext.getResources().getString(R.string.type));
+                    break;
+            }
             ((ItemView)holder).eMoney.setTag(position);
             ((ItemView)holder).eDescription.setTag(position);
             ((ItemView) holder).eMoney.setText(CreatePaidWallet.newInstance().getItems().get(position).getMoney_event() == 0 ? "" :
@@ -101,7 +126,7 @@ public class CreatePaidWalletAdapter extends RecyclerView.Adapter {
 
     private class ItemView extends RecyclerView.ViewHolder {
 
-        private TextView tDate;
+        private TextView tDate, tComboType, tComboCurrency;
         private ImageView iRemove;
         private EditText eMoney, eDescription;
         private RelativeLayout rType, rCurrency;
@@ -115,6 +140,8 @@ public class CreatePaidWalletAdapter extends RecyclerView.Adapter {
             eDescription = itemView.findViewById(R.id.etxt_description);
             rType = itemView.findViewById(R.id.relative_type);
             rCurrency = itemView.findViewById(R.id.relative_currency);
+            tComboCurrency = itemView.findViewById(R.id.txt_combo_currency);
+            tComboType = itemView.findViewById(R.id.txt_combo_type);
 
             MonneyTextWatcher monneyTextWatcher = new MonneyTextWatcher(eMoney);
             eMoney.addTextChangedListener(monneyTextWatcher);
